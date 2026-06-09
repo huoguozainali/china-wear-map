@@ -1,1 +1,0 @@
-# china-wear-map

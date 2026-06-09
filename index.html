@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中国穿衣地图</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="landing-page">
+    <div class="page-glow page-glow-left"></div>
+    <div class="page-glow page-glow-right"></div>
+
+    <div class="leaf leaf-a">🍁</div>
+    <div class="leaf leaf-b">🍁</div>
+    <div class="leaf leaf-c">🍁</div>
+    <div class="leaf leaf-d">🍁</div>
+    <div class="leaf leaf-e">🍁</div>
+
+    <header class="hero-head">
+      <p class="masthead-kicker">AUTUMN EDIT · 2026 秋季特辑</p>
+      <p class="map-name">中国穿衣地图</p>
+      <h1 class="main-title">赏秋出片本命穿衣大法</h1>
+      <p class="masthead-sub">STYLE IN SOUL — 一城一色 · 一秋一装</p>
+    </header>
+
+    <section class="map-stage" id="mapStage">
+      <div id="chinaMap" class="china-map" aria-label="中国地图与 TOP15 赏秋目的地"></div>
+    </section>
+  </main>
+
+  <section class="detail-screen hidden" id="detailScreen">
+    <div class="detail-backdrop"></div>
+    <div class="detail-card-shell">
+      <button class="back-btn" id="backBtn"><span class="back-btn-icon" aria-hidden="true">←</span>返回中国地图</button>
+      <article class="travel-card travel-card-modal">
+        <div class="travel-card-visual">
+          <div class="scenic-frame">
+            <div class="scenic-image" id="scenicImage"></div>
+            <div class="scene-badge" id="sceneBadge"></div>
+            <div class="scene-caption" id="sceneCaption"></div>
+          </div>
+          <div class="look-frame">
+            <div class="look-photo-wrap">
+              <img class="look-photo" id="lookImage" alt="出片 LOOK" />
+              <span class="look-tag">本命 LOOK</span>
+            </div>
+            <div class="look-copy">
+              <p class="detail-kicker">LOOK 风格</p>
+              <h3 id="lookTitle"></h3>
+              <p id="lookDesc"></p>
+            </div>
+          </div>
+        </div>
+        <div class="travel-card-copy">
+          <div class="travel-card-head">
+            <div>
+              <p class="detail-kicker" id="detailRegion"></p>
+              <h2 id="detailTitle"></h2>
+            </div>
+            <div class="detail-time" id="detailTime"></div>
+          </div>
+          <p class="detail-summary" id="detailSummary"></p>
+          <div class="detail-tags" id="detailTags"></div>
+          <div class="detail-grid poster-grid">
+            <article>
+              <small>具体地址</small>
+              <strong id="detailAddress"></strong>
+            </article>
+            <article>
+              <small>最佳赏秋时间</small>
+              <strong id="detailWindow"></strong>
+            </article>
+            <article>
+              <small>穿搭关键词</small>
+              <strong id="detailAdvice"></strong>
+            </article>
+          </div>
+          <div class="detail-actions">
+            <button class="detail-btn">🔥 有100万人正在查看</button>
+            <button class="detail-btn">✈️ 请假也要去</button>
+            <button class="detail-btn">📸 云上先赏了</button>
+          </div>
+          <div class="commerce-products hidden" id="commerceProducts"></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <script src="./app.js"></script>
+</body>
+</html>
