@@ -266,6 +266,9 @@ const detailAdvice = document.getElementById('detailAdvice');
 const commerceProducts = document.getElementById('commerceProducts');
 const backBtn = document.getElementById('backBtn');
 const detailBackdrop = document.querySelector('.detail-backdrop');
+let mapRunner;
+let runnerCurrent = { x: 484, y: 301 };
+let runnerMoving = false;
 
 function projectPoint(lon, lat) {
   const x = lon * Math.PI / 180;
@@ -414,6 +417,118 @@ function buildMiniCard(item) {
   `;
 }
 
+function buildMapRunner() {
+  const left = (runnerCurrent.x / VB_W * 100).toFixed(3);
+  const top = (runnerCurrent.y / VB_H * 100).toFixed(3);
+  return `
+    <div class="map-runner" id="mapRunner" style="left:${left}%;top:${top}%;" aria-hidden="true">
+      <span class="runner-shadow"></span>
+      <svg class="runner-doll" viewBox="0 0 88 112" role="img" aria-label="奔跑去目的地的小人">
+        <defs>
+          <radialGradient id="runnerHat" cx="42%" cy="24%" r="72%">
+            <stop offset="0" stop-color="#b98251" />
+            <stop offset="1" stop-color="#6e3f25" />
+          </radialGradient>
+          <linearGradient id="runnerJacket" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#34312e" />
+            <stop offset="0.52" stop-color="#171716" />
+            <stop offset="1" stop-color="#3b332b" />
+          </linearGradient>
+          <linearGradient id="runnerPants" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#f3e9d8" />
+            <stop offset="1" stop-color="#cdbca3" />
+          </linearGradient>
+        </defs>
+        <g class="runner-tilt">
+          <ellipse cx="26" cy="22" rx="10" ry="12" fill="url(#runnerHat)" />
+          <ellipse cx="62" cy="22" rx="10" ry="12" fill="url(#runnerHat)" />
+          <ellipse cx="44" cy="33" rx="26" ry="25" fill="url(#runnerHat)" />
+          <path d="M22 37c8 8 34 9 45 0 0 13-10 24-23 24S22 50 22 37Z" fill="#7a492b" opacity="0.45" />
+          <g class="runner-arm runner-arm-left">
+            <path d="M27 57c-12 6-17 15-15 25" fill="none" stroke="#201d1a" stroke-width="11" stroke-linecap="round" />
+            <path d="M17 81c2 5 7 6 11 2" fill="none" stroke="#e5d8c5" stroke-width="7" stroke-linecap="round" />
+          </g>
+          <g class="runner-arm runner-arm-right">
+            <path d="M61 58c12 7 16 16 12 26" fill="none" stroke="#201d1a" stroke-width="11" stroke-linecap="round" />
+            <path d="M72 82c-3 5-8 5-11 1" fill="none" stroke="#e5d8c5" stroke-width="7" stroke-linecap="round" />
+          </g>
+          <path d="M24 50c7-9 33-9 40 0 9 12 9 36 0 44-7 6-33 6-40 0-9-8-9-32 0-44Z" fill="url(#runnerJacket)" />
+          <path d="M24 62h40M22 74h44M24 86h40" fill="none" stroke="#fff7eb" stroke-width="2.2" stroke-linecap="round" opacity="0.22" />
+          <path d="M29 54c8-5 22-6 31 0" fill="none" stroke="#fff7eb" stroke-width="2.8" stroke-linecap="round" opacity="0.24" />
+          <g class="runner-leg runner-leg-left">
+            <path d="M34 91c-2 8-2 15-7 21" fill="none" stroke="url(#runnerPants)" stroke-width="13" stroke-linecap="round" />
+            <path d="M22 109c7-5 15-4 20 2" fill="none" stroke="#b64227" stroke-width="9" stroke-linecap="round" />
+          </g>
+          <g class="runner-leg runner-leg-right">
+            <path d="M55 91c4 8 5 15 10 21" fill="none" stroke="url(#runnerPants)" stroke-width="13" stroke-linecap="round" />
+            <path d="M57 111c8-4 16-2 21 4" fill="none" stroke="#b64227" stroke-width="9" stroke-linecap="round" />
+          </g>
+          <path d="M30 48c10 7 20 7 29 0" fill="none" stroke="#f5e8d7" stroke-width="5" stroke-linecap="round" opacity="0.75" />
+        </g>
+      </svg>
+    </div>
+  `;
+}
+
+function setRunnerPosition(x, y) {
+  if (!mapRunner) return;
+  runnerCurrent = { x, y };
+  mapRunner.style.left = `${(x / VB_W * 100).toFixed(3)}%`;
+  mapRunner.style.top = `${(y / VB_H * 100).toFixed(3)}%`;
+}
+
+function animateRunnerTo(item) {
+  return new Promise(resolve => {
+    if (!mapRunner) {
+      resolve();
+      return;
+    }
+    const [targetX, targetY] = projectPoint(item.coords[0], item.coords[1]);
+    const startX = runnerCurrent.x;
+    const startY = runnerCurrent.y;
+    const dx = targetX - startX;
+    const dy = targetY - startY;
+    const distance = Math.hypot(dx, dy);
+    const duration = Math.min(1500, Math.max(820, distance * 2.4));
+    const arc = Math.min(92, Math.max(36, distance * 0.16));
+    const controlX = (startX + targetX) / 2;
+    const controlY = (startY + targetY) / 2 - arc;
+    const startTime = performance.now();
+    mapRunner.classList.add('is-running');
+    mapRunner.style.setProperty('--runner-direction', dx < 0 ? '-1' : '1');
+
+    function step(now) {
+      const t = Math.min(1, (now - startTime) / duration);
+      const ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      const x = (1 - ease) * (1 - ease) * startX + 2 * (1 - ease) * ease * controlX + ease * ease * targetX;
+      const y = (1 - ease) * (1 - ease) * startY + 2 * (1 - ease) * ease * controlY + ease * ease * targetY;
+      setRunnerPosition(x, y);
+      if (t < 1) {
+        requestAnimationFrame(step);
+        return;
+      }
+      setRunnerPosition(targetX, targetY);
+      mapRunner.classList.remove('is-running');
+      mapRunner.classList.add('has-arrived');
+      window.setTimeout(() => {
+        mapRunner.classList.remove('has-arrived');
+        resolve();
+      }, 180);
+    }
+    requestAnimationFrame(step);
+  });
+}
+
+async function travelToDetail(id) {
+  if (runnerMoving) return;
+  const item = DESTINATIONS.find(destination => destination.id === id);
+  if (!item) return;
+  runnerMoving = true;
+  await animateRunnerTo(item);
+  runnerMoving = false;
+  openDetail(id);
+}
+
 function renderMap() {
   const pointsMarkup = VISIBLE.map(buildPointMarkup).join('');
   const cards = VISIBLE.map(buildMiniCard).join('');
@@ -423,16 +538,19 @@ function renderMap() {
     <div class="map-shell">
       <img class="map-base" src="./assets/china_base.svg" alt="中国地图" />
       ${leaders}
+      ${buildMapRunner()}
       <div class="map-cards-html">${cards}</div>
       <div class="map-pins">${pointsMarkup}</div>
     </div>
   `;
 
+  mapRunner = document.getElementById('mapRunner');
+
   chinaMap.querySelectorAll('.mini-card').forEach(card => {
-    card.addEventListener('click', () => openDetail(card.dataset.openSecond));
+    card.addEventListener('click', () => travelToDetail(card.dataset.openSecond));
   });
   chinaMap.querySelectorAll('.map-pin').forEach(point => {
-    point.addEventListener('click', () => openDetail(point.dataset.id));
+    point.addEventListener('click', () => travelToDetail(point.dataset.id));
   });
 }
 
