@@ -497,7 +497,7 @@ function renderMap() {
 
   chinaMap.innerHTML = `
     <div class="map-shell">
-      <img class="map-base" src="./assets/china_base.svg" alt="中国地图" />
+      <img class="map-base" src="./assets/china_autumn_3d_landmark_map.png" alt="秋日3D中国地标地图" />
       ${leaders}
       ${buildMapRunner()}
       <div class="map-cards-html">${cards}</div>
