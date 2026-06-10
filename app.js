@@ -292,6 +292,43 @@ const VISIBLE = TOP12
   .map(id => DESTINATIONS.find(d => d.id === id))
   .filter(Boolean);
 
+const PROVINCE_TRAVEL_ICONS = [
+  { name: '新疆', icon: '🐫', vibe: '丝路驼影', coords: [86.6, 41.8] },
+  { name: '西藏', icon: '🏔️', vibe: '雪山圣境', coords: [88.7, 31.2] },
+  { name: '青海', icon: '💧', vibe: '高原蓝湖', coords: [96.0, 35.7] },
+  { name: '甘肃', icon: '🌈', vibe: '丹霞丝路', coords: [103.6, 38.4] },
+  { name: '宁夏', icon: '🍇', vibe: '贺兰酒庄', coords: [106.1, 37.3] },
+  { name: '内蒙古', icon: '⛺', vibe: '草原毡房', coords: [112.2, 43.7] },
+  { name: '黑龙江', icon: '❄️', vibe: '极北雪林', coords: [128.0, 47.7] },
+  { name: '吉林', icon: '🌋', vibe: '长白天池', coords: [126.2, 43.7] },
+  { name: '辽宁', icon: '⛵', vibe: '海岸假日', coords: [122.6, 41.5] },
+  { name: '北京', icon: '🏯', vibe: '古都红墙', coords: [116.4, 40.2] },
+  { name: '天津', icon: '🌉', vibe: '海河桥影', coords: [117.3, 39.1] },
+  { name: '河北', icon: '🧱', vibe: '长城山海', coords: [115.2, 38.4] },
+  { name: '山西', icon: '🏮', vibe: '古城灯火', coords: [112.4, 37.8] },
+  { name: '陕西', icon: '🥁', vibe: '秦风鼓点', coords: [108.9, 34.3] },
+  { name: '河南', icon: '🥋', vibe: '嵩山武韵', coords: [113.6, 34.7] },
+  { name: '山东', icon: '🌊', vibe: '海岱日出', coords: [118.0, 36.4] },
+  { name: '江苏', icon: '🪷', vibe: '园林水岸', coords: [119.4, 32.9] },
+  { name: '上海', icon: '🏙️', vibe: '摩登天际', coords: [121.5, 31.2] },
+  { name: '浙江', icon: '🍵', vibe: '西湖茶香', coords: [120.2, 29.2] },
+  { name: '安徽', icon: '⛰️', vibe: '徽州黄山', coords: [117.2, 31.6] },
+  { name: '福建', icon: '🏯', vibe: '土楼山海', coords: [118.2, 26.1] },
+  { name: '江西', icon: '🌾', vibe: '晒秋梯田', coords: [115.7, 27.7] },
+  { name: '湖北', icon: '🪽', vibe: '江城鹤影', coords: [112.5, 30.9] },
+  { name: '湖南', icon: '🪨', vibe: '奇峰云海', coords: [111.8, 27.7] },
+  { name: '重庆', icon: '🚠', vibe: '山城索道', coords: [107.9, 30.1] },
+  { name: '四川', icon: '🐼', vibe: '熊猫雪山', coords: [102.9, 30.6] },
+  { name: '贵州', icon: '🌉', vibe: '苗岭吊桥', coords: [106.7, 26.8] },
+  { name: '云南', icon: '🌾', vibe: '云上梯田', coords: [101.5, 25.0] },
+  { name: '广西', icon: '🛶', vibe: '漓江竹筏', coords: [108.7, 23.8] },
+  { name: '广东', icon: '🌴', vibe: '湾区椰影', coords: [113.5, 23.3] },
+  { name: '海南', icon: '🥥', vibe: '海岛椰风', coords: [109.7, 19.2] },
+  { name: '香港', icon: '🚋', vibe: '港岛叮叮', coords: [114.2, 22.3] },
+  { name: '澳门', icon: '🎠', vibe: '南欧街角', coords: [113.6, 22.2] },
+  { name: '台湾', icon: '🌺', vibe: '海岛花路', coords: [121.0, 23.8] }
+];
+
 /* 迷你杂志卡尺寸（viewBox 900×640 单位）—— 悬浮贴点位、地图标注式 */
 const CARD_W = 98;
 const CARD_H = 126;
@@ -370,6 +407,41 @@ function buildLeaderLines() {
     return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#8a4a28" stroke-width="1.6" stroke-dasharray="6 5" stroke-linecap="round" opacity="0.62" /><circle cx="${x1}" cy="${y1}" r="2.4" fill="#8a4a28" opacity="0.7" />`;
   }).join('');
   return `<svg class="map-leaders" viewBox="0 0 ${VB_W} ${VB_H}" preserveAspectRatio="none" aria-hidden="true">${parts}</svg>`;
+}
+
+function buildProvinceIcons() {
+  return PROVINCE_TRAVEL_ICONS.map((item, index) => {
+    const [x, y] = projectPoint(item.coords[0], item.coords[1]);
+    const safeX = Math.max(18, Math.min(VB_W - 18, x));
+    const safeY = Math.max(18, Math.min(VB_H - 18, y));
+    const left = (safeX / VB_W * 100).toFixed(2);
+    const top = (safeY / VB_H * 100).toFixed(2);
+    const delay = ((index % 9) * 0.16).toFixed(2);
+    const scale = (0.82 + ((index % 5) * 0.035)).toFixed(2);
+    return `
+      <span class="province-landmark" style="left:${left}%;top:${top}%;--delay:${delay}s;--scale:${scale};" aria-label="${item.name}代表旅行元素：${item.vibe}" title="${item.name} · ${item.vibe}">
+        <i class="landmark-glow"></i>
+        <b>${item.icon}</b>
+      </span>
+    `;
+  }).join('');
+}
+
+function buildAutumnAtmosphere() {
+  return `
+    <div class="terrain-ridges" aria-hidden="true">
+      <i class="ridge ridge-west"></i>
+      <i class="ridge ridge-north"></i>
+      <i class="ridge ridge-south"></i>
+      <i class="ridge ridge-east"></i>
+    </div>
+    <div class="map-fog-layer" aria-hidden="true">
+      <i class="fog fog-a"></i>
+      <i class="fog fog-b"></i>
+      <i class="fog fog-c"></i>
+      <i class="fog fog-d"></i>
+    </div>
+  `;
 }
 
 /* 气象特效粒子：高寒飘雪花/冰晶、中温落叶、暖秋金色光晕 */
@@ -494,11 +566,15 @@ function renderMap() {
   const pointsMarkup = VISIBLE.map(buildPointMarkup).join('');
   const cards = VISIBLE.map(buildMiniCard).join('');
   const leaders = buildLeaderLines();
+  const landmarks = buildProvinceIcons();
+  const atmosphere = buildAutumnAtmosphere();
 
   chinaMap.innerHTML = `
     <div class="map-shell">
       <img class="map-base" src="./assets/china_base.svg" alt="中国地图" />
+      ${atmosphere}
       ${leaders}
+      <div class="province-landmarks">${landmarks}</div>
       ${buildMapRunner()}
       <div class="map-cards-html">${cards}</div>
       <div class="map-pins">${pointsMarkup}</div>
