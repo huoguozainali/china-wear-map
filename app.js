@@ -309,7 +309,7 @@ const ITERATIONS = 240;   // 碰撞避让迭代次数
       并辅以一根弱弹簧把卡片拉回各自锚点，保证引线短、不乱跑；
    3) 全程把卡片中心钳制在画布 [0,900]×[0,640] 内（可略微出血到边缘）。 */
 const MANUAL_CARD_POS = {
-  kanas: { x: 238, y: 156 },
+  kanas: { x: 238, y: 210 },
   mohe: { x: 715, y: 74 },
   changbaishan: { x: 762, y: 206 },
   xiangshan: { x: 603, y: 242 },
