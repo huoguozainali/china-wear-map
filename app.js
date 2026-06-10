@@ -441,16 +441,6 @@ function buildAutumnAtmosphere() {
       <i class="fog fog-c"></i>
       <i class="fog fog-d"></i>
     </div>
-    <div class="living-map-particles" aria-hidden="true">
-      <i style="--x:18%;--y:22%;--d:0s;--r:-18deg;">🍂</i>
-      <i style="--x:33%;--y:16%;--d:-1.2s;--r:12deg;">✨</i>
-      <i style="--x:55%;--y:19%;--d:-2.1s;--r:22deg;">🍁</i>
-      <i style="--x:76%;--y:28%;--d:-0.7s;--r:-8deg;">🍂</i>
-      <i style="--x:23%;--y:62%;--d:-2.8s;--r:18deg;">✨</i>
-      <i style="--x:48%;--y:70%;--d:-1.8s;--r:-22deg;">🍁</i>
-      <i style="--x:69%;--y:67%;--d:-3.2s;--r:10deg;">🍂</i>
-      <i style="--x:84%;--y:52%;--d:-2.4s;--r:28deg;">✨</i>
-    </div>
   `;
 }
 
