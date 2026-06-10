@@ -1597,3 +1597,31 @@ button { font: inherit; }
     font-size: 54px;
   }
 }
+
+/* Align all secondary detail cards to the Beijing Xiangshan size */
+@media (min-width: 901px) {
+  .travel-card {
+    height: min(560px, calc(100vh - 76px));
+    overflow: auto;
+  }
+  .commerce-products {
+    margin-top: 10px;
+    gap: 8px;
+  }
+  .commerce-product-card img {
+    aspect-ratio: 1 / 0.72;
+  }
+  .commerce-product-copy {
+    padding: 6px 8px 8px;
+  }
+  .commerce-product-copy strong {
+    font-size: 11px;
+    line-height: 1.25;
+    min-height: 28px;
+  }
+  .commerce-product-copy span {
+    margin-top: 4px;
+    padding: 3px 7px;
+    font-size: 11px;
+  }
+}
