@@ -293,40 +293,40 @@ const VISIBLE = TOP12
   .filter(Boolean);
 
 const PROVINCE_TRAVEL_ICONS = [
-  { name: '新疆', icon: '🐫', vibe: '丝路驼影', coords: [86.6, 41.8] },
-  { name: '西藏', icon: '🏔️', vibe: '雪山圣境', coords: [88.7, 31.2] },
-  { name: '青海', icon: '💧', vibe: '高原蓝湖', coords: [96.0, 35.7] },
-  { name: '甘肃', icon: '🌈', vibe: '丹霞丝路', coords: [103.6, 38.4] },
-  { name: '宁夏', icon: '🍇', vibe: '贺兰酒庄', coords: [106.1, 37.3] },
-  { name: '内蒙古', icon: '⛺', vibe: '草原毡房', coords: [112.2, 43.7] },
-  { name: '黑龙江', icon: '❄️', vibe: '极北雪林', coords: [128.0, 47.7] },
-  { name: '吉林', icon: '🌋', vibe: '长白天池', coords: [126.2, 43.7] },
-  { name: '辽宁', icon: '⛵', vibe: '海岸假日', coords: [122.6, 41.5] },
-  { name: '北京', icon: '🏯', vibe: '古都红墙', coords: [116.4, 40.2] },
-  { name: '天津', icon: '🌉', vibe: '海河桥影', coords: [117.3, 39.1] },
-  { name: '河北', icon: '🧱', vibe: '长城山海', coords: [115.2, 38.4] },
-  { name: '山西', icon: '🏮', vibe: '古城灯火', coords: [112.4, 37.8] },
-  { name: '陕西', icon: '🥁', vibe: '秦风鼓点', coords: [108.9, 34.3] },
-  { name: '河南', icon: '🥋', vibe: '嵩山武韵', coords: [113.6, 34.7] },
-  { name: '山东', icon: '🌊', vibe: '海岱日出', coords: [118.0, 36.4] },
-  { name: '江苏', icon: '🪷', vibe: '园林水岸', coords: [119.4, 32.9] },
-  { name: '上海', icon: '🏙️', vibe: '摩登天际', coords: [121.5, 31.2] },
-  { name: '浙江', icon: '🍵', vibe: '西湖茶香', coords: [120.2, 29.2] },
-  { name: '安徽', icon: '⛰️', vibe: '徽州黄山', coords: [117.2, 31.6] },
-  { name: '福建', icon: '🏯', vibe: '土楼山海', coords: [118.2, 26.1] },
-  { name: '江西', icon: '🌾', vibe: '晒秋梯田', coords: [115.7, 27.7] },
-  { name: '湖北', icon: '🪽', vibe: '江城鹤影', coords: [112.5, 30.9] },
-  { name: '湖南', icon: '🪨', vibe: '奇峰云海', coords: [111.8, 27.7] },
-  { name: '重庆', icon: '🚠', vibe: '山城索道', coords: [107.9, 30.1] },
-  { name: '四川', icon: '🐼', vibe: '熊猫雪山', coords: [102.9, 30.6] },
-  { name: '贵州', icon: '🌉', vibe: '苗岭吊桥', coords: [106.7, 26.8] },
-  { name: '云南', icon: '🌾', vibe: '云上梯田', coords: [101.5, 25.0] },
-  { name: '广西', icon: '🛶', vibe: '漓江竹筏', coords: [108.7, 23.8] },
-  { name: '广东', icon: '🌴', vibe: '湾区椰影', coords: [113.5, 23.3] },
-  { name: '海南', icon: '🥥', vibe: '海岛椰风', coords: [109.7, 19.2] },
-  { name: '香港', icon: '🚋', vibe: '港岛叮叮', coords: [114.2, 22.3] },
-  { name: '澳门', icon: '🎠', vibe: '南欧街角', coords: [113.6, 22.2] },
-  { name: '台湾', icon: '🌺', vibe: '海岛花路', coords: [121.0, 23.8] }
+  { name: '新疆', landmark: '天山', type: 'mountain', coords: [86.6, 41.8] },
+  { name: '西藏', landmark: '布达拉宫', type: 'potala', coords: [88.7, 31.2] },
+  { name: '青海', landmark: '青海湖', type: 'lake', coords: [96.0, 35.7] },
+  { name: '甘肃', landmark: '莫高窟', type: 'grotto', coords: [103.6, 38.4] },
+  { name: '宁夏', landmark: '西夏陵', type: 'tomb', coords: [106.1, 37.3] },
+  { name: '内蒙古', landmark: '元上都', type: 'yurt', coords: [112.2, 43.7] },
+  { name: '黑龙江', landmark: '圣索菲亚教堂', type: 'cathedral', coords: [128.0, 47.7] },
+  { name: '吉林', landmark: '长白山', type: 'snowpeak', coords: [126.2, 43.7] },
+  { name: '辽宁', landmark: '沈阳故宫', type: 'palace', coords: [122.6, 41.5] },
+  { name: '北京', landmark: '故宫', type: 'palace', coords: [116.4, 40.2] },
+  { name: '天津', landmark: '天津之眼', type: 'wheel', coords: [117.3, 39.1] },
+  { name: '河北', landmark: '避暑山庄', type: 'villa', coords: [115.2, 38.4] },
+  { name: '山西', landmark: '云冈石窟', type: 'grotto', coords: [112.4, 37.8] },
+  { name: '陕西', landmark: '兵马俑', type: 'warrior', coords: [108.9, 34.3] },
+  { name: '河南', landmark: '龙门石窟', type: 'grotto', coords: [113.6, 34.7] },
+  { name: '山东', landmark: '泰山', type: 'mountain', coords: [118.0, 36.4] },
+  { name: '江苏', landmark: '拙政园', type: 'garden', coords: [119.4, 32.9] },
+  { name: '上海', landmark: '东方明珠', type: 'pearl', coords: [121.5, 31.2] },
+  { name: '浙江', landmark: '杭州西湖', type: 'lake', coords: [120.2, 29.2] },
+  { name: '安徽', landmark: '黄山', type: 'mountain', coords: [117.2, 31.6] },
+  { name: '福建', landmark: '鼓浪屿', type: 'island', coords: [118.2, 26.1] },
+  { name: '江西', landmark: '庐山', type: 'mountain', coords: [115.7, 27.7] },
+  { name: '湖北', landmark: '武当山', type: 'temple', coords: [112.5, 30.9] },
+  { name: '湖南', landmark: '武陵源', type: 'peaks', coords: [111.8, 27.7] },
+  { name: '重庆', landmark: '洪崖洞', type: 'stilt', coords: [107.9, 30.1] },
+  { name: '四川', landmark: '九寨沟', type: 'panda', coords: [102.9, 30.6] },
+  { name: '贵州', landmark: '海龙屯', type: 'fort', coords: [106.7, 26.8] },
+  { name: '云南', landmark: '丽江古城', type: 'village', coords: [101.5, 25.0] },
+  { name: '广西', landmark: '桂林山水', type: 'karst', coords: [108.7, 23.8] },
+  { name: '广东', landmark: '开平碉楼', type: 'towerhouse', coords: [113.5, 23.3] },
+  { name: '海南', landmark: '三亚海岸', type: 'palm', coords: [109.7, 19.2] },
+  { name: '香港', landmark: '维多利亚港', type: 'harbor', coords: [114.2, 22.3] },
+  { name: '澳门', landmark: '历史城区', type: 'ruins', coords: [113.6, 22.2] },
+  { name: '台湾', landmark: '日月潭', type: 'sunmoon', coords: [121.0, 23.8] }
 ];
 
 /* 迷你杂志卡尺寸（viewBox 900×640 单位）—— 悬浮贴点位、地图标注式 */
@@ -409,6 +409,45 @@ function buildLeaderLines() {
   return `<svg class="map-leaders" viewBox="0 0 ${VB_W} ${VB_H}" preserveAspectRatio="none" aria-hidden="true">${parts}</svg>`;
 }
 
+function buildLandmarkSvg(type) {
+  const defs = `
+    <defs>
+      <linearGradient id="gold" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#ffe0a0"/><stop offset="1" stop-color="#b8682f"/></linearGradient>
+      <linearGradient id="red" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#cf5a32"/><stop offset="1" stop-color="#6b2419"/></linearGradient>
+      <linearGradient id="stone" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f0d8b8"/><stop offset="1" stop-color="#9f714d"/></linearGradient>
+      <linearGradient id="water" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#d8eee8"/><stop offset="1" stop-color="#7fa8a4"/></linearGradient>
+      <filter id="miniShadow"><feDropShadow dx="0" dy="4" stdDeviation="2" flood-color="#5e3219" flood-opacity="0.28"/></filter>
+    </defs>`;
+  const base = '<ellipse cx="32" cy="66" rx="23" ry="7" fill="rgba(95,48,22,.22)"/>';
+  const roof = '<path d="M14 38h36l-5-8H19z" fill="url(#red)"/><rect x="18" y="38" width="28" height="18" rx="2" fill="url(#gold)"/><path d="M21 34h22l-4-6H25z" fill="url(#red)"/>';
+  const mountain = '<path d="M10 60 30 20l10 20 9-14 11 34z" fill="url(#stone)"/><path d="M30 20l-7 14h15z" fill="#fff3df"/><path d="M49 26l-5 9h11z" fill="#fff3df"/>';
+  const lake = '<path d="M9 53c8-10 36-12 48 0-8 11-39 12-48 0Z" fill="url(#water)"/><path d="M18 52c9 4 21 4 31 0" stroke="#fff6e8" stroke-width="3" fill="none" stroke-linecap="round"/>';
+  const tower = '<line x1="32" y1="16" x2="32" y2="58" stroke="#8f3e28" stroke-width="4"/><circle cx="32" cy="24" r="9" fill="url(#red)"/><circle cx="32" cy="39" r="6" fill="url(#gold)"/><path d="M22 58h20l-5-12H27z" fill="url(#stone)"/>';
+  const wheel = '<circle cx="32" cy="34" r="18" fill="none" stroke="url(#red)" stroke-width="4"/><circle cx="32" cy="34" r="4" fill="url(#gold)"/><path d="M32 52v12M20 64h24M32 34l13-13M32 34 19 21M32 34h18M32 34H14" stroke="#8b4a2a" stroke-width="2" stroke-linecap="round"/>';
+  const panda = '<circle cx="25" cy="34" r="8" fill="#3c332d"/><circle cx="39" cy="34" r="8" fill="#3c332d"/><circle cx="32" cy="43" r="17" fill="#fff2df"/><ellipse cx="26" cy="42" rx="4" ry="6" fill="#3c332d"/><ellipse cx="38" cy="42" rx="4" ry="6" fill="#3c332d"/><path d="M24 60h16" stroke="#3c332d" stroke-width="9" stroke-linecap="round"/>';
+  const potala = '<rect x="13" y="42" width="38" height="15" fill="#f4dfc1"/><rect x="18" y="31" width="28" height="12" fill="#b1462f"/><rect x="24" y="20" width="16" height="12" fill="#f4dfc1"/><path d="M20 20h24l-4-6H24z" fill="url(#gold)"/>';
+  const grotto = '<path d="M12 58c2-24 11-39 22-39s17 16 18 39z" fill="url(#stone)"/><path d="M24 57V43c0-7 16-7 16 0v14" fill="#6b4129" opacity=".55"/><circle cx="32" cy="36" r="5" fill="url(#gold)"/>';
+  const generic = {
+    mountain, snowpeak: mountain, lake, sunmoon: lake, palace: roof, temple: roof, villa: roof, potala, pearl: tower, wheel, panda, grotto,
+    tomb: '<path d="M18 57h28l-4-20H22z" fill="url(#stone)"/><path d="M23 37h18l-3-10H26z" fill="url(#gold)"/>',
+    yurt: '<path d="M14 55c4-18 32-18 36 0z" fill="#f5dfbf"/><path d="M18 55c6-10 22-10 28 0" fill="url(#red)" opacity=".72"/>',
+    cathedral: '<rect x="18" y="34" width="28" height="23" rx="3" fill="url(#stone)"/><circle cx="32" cy="28" r="10" fill="url(#gold)"/><path d="M32 13v10M27 18h10" stroke="#7c3a24" stroke-width="2"/>',
+    warrior: '<circle cx="32" cy="27" r="8" fill="url(#stone)"/><path d="M22 57c1-22 19-22 20 0z" fill="#835438"/><path d="M22 35h20" stroke="#3f281c" stroke-width="5"/>',
+    garden: '<path d="M15 56h34V42H15z" fill="url(#stone)"/><path d="M12 42h40L44 34H20z" fill="url(#red)"/><path d="M23 34c0-10 18-10 18 0" fill="#b87542"/>',
+    island: '<path d="M13 57c8-11 31-11 40 0z" fill="url(#water)"/><path d="M28 48l6-19 6 19" stroke="#8c4a2c" stroke-width="4"/><path d="M34 29c7 1 11 5 12 10-7-3-12-3-12-10Z" fill="#b66a38"/>',
+    peaks: '<path d="M12 60l10-25 9 25M28 60l11-34 13 34" fill="url(#stone)"/><path d="M39 26l-4 11h8z" fill="#fff0d8"/>',
+    stilt: '<rect x="17" y="32" width="30" height="22" fill="url(#red)"/><path d="M14 32h36l-6-8H20z" fill="url(#gold)"/><path d="M22 54v10M42 54v10" stroke="#6f331e" stroke-width="3"/>',
+    fort: '<rect x="16" y="35" width="32" height="23" fill="url(#stone)"/><path d="M16 35h8v-7h8v7h8v-7h8v7" fill="url(#red)"/>',
+    village: '<path d="M12 55h16V40H12zM36 55h16V40H36z" fill="url(#stone)"/><path d="M9 40h22l-5-8H14zM33 40h22l-5-8H38z" fill="url(#red)"/>',
+    karst: '<path d="M11 60c9-28 18-28 21 0M31 60c8-35 18-35 23 0" fill="url(#stone)"/>',
+    towerhouse: '<rect x="22" y="25" width="22" height="34" fill="url(#stone)"/><path d="M18 25h30l-5-8H23z" fill="url(#red)"/><path d="M27 35h4M36 35h4M27 45h4M36 45h4" stroke="#7a442a" stroke-width="2"/>',
+    palm: '<path d="M32 58c4-16 3-26 0-38" stroke="#8a4a2a" stroke-width="5"/><path d="M32 21c-13 1-18 9-20 16 8-5 14-6 20-16ZM33 21c13 0 18 8 20 15-8-4-14-5-20-15Z" fill="#c7773e"/>',
+    harbor: '<path d="M12 57h40" stroke="url(#water)" stroke-width="8" stroke-linecap="round"/><rect x="20" y="32" width="7" height="23" fill="url(#stone)"/><rect x="31" y="24" width="8" height="31" fill="url(#red)"/><rect x="43" y="36" width="6" height="19" fill="url(#gold)"/>',
+    ruins: '<path d="M18 57V28h28v29" fill="none" stroke="url(#stone)" stroke-width="7"/><path d="M24 57V43c0-9 16-9 16 0v14" fill="none" stroke="#7a4b32" stroke-width="5"/>'
+  };
+  return `<svg class="landmark-svg landmark-${type}" viewBox="0 0 64 72" aria-hidden="true">${defs}<g filter="url(#miniShadow)">${base}${generic[type] || roof}</g></svg>`;
+}
+
 function buildProvinceIcons() {
   return PROVINCE_TRAVEL_ICONS.map((item, index) => {
     const [x, y] = projectPoint(item.coords[0], item.coords[1]);
@@ -419,9 +458,10 @@ function buildProvinceIcons() {
     const delay = ((index % 9) * 0.16).toFixed(2);
     const scale = (0.82 + ((index % 5) * 0.035)).toFixed(2);
     return `
-      <span class="province-landmark" style="left:${left}%;top:${top}%;--delay:${delay}s;--scale:${scale};" aria-label="${item.name}代表旅行元素：${item.vibe}" title="${item.name} · ${item.vibe}">
+      <span class="province-landmark" style="left:${left}%;top:${top}%;--delay:${delay}s;--scale:${scale};" aria-label="${item.name}代表地标：${item.landmark}" title="${item.name} · ${item.landmark}">
         <i class="landmark-glow"></i>
-        <b>${item.icon}</b>
+        ${buildLandmarkSvg(item.type)}
+        <em>${item.landmark}</em>
       </span>
     `;
   }).join('');
@@ -440,16 +480,6 @@ function buildAutumnAtmosphere() {
       <i class="fog fog-b"></i>
       <i class="fog fog-c"></i>
       <i class="fog fog-d"></i>
-    </div>
-    <div class="living-map-particles" aria-hidden="true">
-      <i style="--x:18%;--y:22%;--d:0s;--r:-18deg;">🍂</i>
-      <i style="--x:33%;--y:16%;--d:-1.2s;--r:12deg;">✨</i>
-      <i style="--x:55%;--y:19%;--d:-2.1s;--r:22deg;">🍁</i>
-      <i style="--x:76%;--y:28%;--d:-0.7s;--r:-8deg;">🍂</i>
-      <i style="--x:23%;--y:62%;--d:-2.8s;--r:18deg;">✨</i>
-      <i style="--x:48%;--y:70%;--d:-1.8s;--r:-22deg;">🍁</i>
-      <i style="--x:69%;--y:67%;--d:-3.2s;--r:10deg;">🍂</i>
-      <i style="--x:84%;--y:52%;--d:-2.4s;--r:28deg;">✨</i>
     </div>
   `;
 }
@@ -581,17 +611,21 @@ function renderMap() {
 
   chinaMap.innerHTML = `
     <div class="map-shell">
-      <img class="map-base" src="./assets/china_base.svg" alt="中国地图" />
-      ${atmosphere}
+      <div class="isometric-map-plate">
+        <img class="map-depth depth-a" src="./assets/china_base.svg" alt="" aria-hidden="true" />
+        <img class="map-depth depth-b" src="./assets/china_base.svg" alt="" aria-hidden="true" />
+        <img class="map-depth depth-c" src="./assets/china_base.svg" alt="" aria-hidden="true" />
+        <img class="map-base" src="./assets/china_base.svg" alt="中国地图" />
+        ${atmosphere}
+      </div>
+      <div class="province-landmarks province-landmarks-visible">${landmarks}</div>
       ${leaders}
-      <div class="province-landmarks">${landmarks}</div>
-      ${buildMapRunner()}
       <div class="map-cards-html">${cards}</div>
       <div class="map-pins">${pointsMarkup}</div>
     </div>
   `;
 
-  mapRunner = document.getElementById('mapRunner');
+  mapRunner = null;
 
   chinaMap.querySelectorAll('.mini-card').forEach(card => {
     card.addEventListener('click', () => travelToDetail(card.dataset.openSecond));

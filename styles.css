@@ -1762,3 +1762,263 @@ button { font: inherit; }
     animation: none !important;
   }
 }
+
+/* correction: 3D belongs to map body only; cards stay flat and static; no particles */
+.china-map {
+  perspective: 1600px;
+  perspective-origin: 50% 44%;
+}
+.map-shell {
+  transform: none !important;
+  animation: none !important;
+  transform-style: flat;
+  filter: none;
+}
+.map-shell::before,
+.map-shell::after {
+  display: none;
+}
+.isometric-map-plate {
+  position: relative;
+  z-index: 1;
+  transform: rotateX(58deg) rotateZ(-8deg) translateY(-18px) scale(1.05);
+  transform-origin: 50% 54%;
+  transform-style: preserve-3d;
+  filter: drop-shadow(22px 34px 0 rgba(116, 61, 30, 0.22)) drop-shadow(0 54px 54px rgba(70, 35, 15, 0.24));
+}
+.isometric-map-plate::before,
+.isometric-map-plate::after {
+  content: '';
+  position: absolute;
+  inset: 8% 5% 3% 5%;
+  border-radius: 45% 42% 48% 44%;
+  pointer-events: none;
+}
+.isometric-map-plate::before {
+  z-index: 0;
+  background: linear-gradient(135deg, rgba(145, 74, 34, 0.34), rgba(229, 154, 66, 0.2));
+  transform: translate3d(18px, 28px, -70px) scale(0.96);
+  filter: blur(2px);
+}
+.isometric-map-plate::after {
+  z-index: 2;
+  background:
+    radial-gradient(ellipse at 28% 42%, rgba(178, 92, 42, 0.2), transparent 28%),
+    radial-gradient(ellipse at 56% 48%, rgba(240, 177, 82, 0.22), transparent 28%),
+    radial-gradient(ellipse at 70% 34%, rgba(130, 70, 36, 0.16), transparent 22%);
+  mix-blend-mode: multiply;
+  transform: translateZ(16px);
+}
+.map-base {
+  transform: translateZ(18px) !important;
+  animation: none !important;
+  filter: drop-shadow(8px 20px 0 rgba(107, 58, 31, 0.2)) sepia(0.28) saturate(1.38) hue-rotate(-12deg) contrast(1.06) !important;
+}
+.terrain-ridges {
+  z-index: 3;
+  transform: translateZ(36px) !important;
+  animation: terrainBreath 7s ease-in-out infinite;
+}
+.province-landmarks {
+  z-index: 6;
+  transform: translateZ(96px) !important;
+}
+.province-landmark {
+  width: clamp(22px, 2.6vw, 34px);
+  height: clamp(26px, 3vw, 40px);
+  transform: translate(-50%, -78%) scale(var(--scale)) rotateZ(8deg) rotateX(-58deg);
+  animation: landmarkFloat 5.2s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+.province-landmark b {
+  display: none;
+}
+.landmark-svg {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.landmark-glow {
+  bottom: 0;
+  width: 92%;
+  height: 24%;
+  background: radial-gradient(ellipse at center, rgba(132, 68, 30, 0.32), rgba(223, 157, 78, 0.14) 48%, transparent 76%);
+}
+.map-fog-layer {
+  z-index: 7;
+  transform: translateZ(120px) rotateX(-58deg) rotateZ(8deg) !important;
+  animation: fogLayerBreath 9s ease-in-out infinite;
+}
+.fog {
+  opacity: 0.72;
+}
+.living-map-particles,
+.living-map-particles i {
+  display: none !important;
+  animation: none !important;
+}
+.map-cards-html,
+.map-pins,
+.map-leaders {
+  transform: none !important;
+}
+.mini-card {
+  animation: none !important;
+  transform: none !important;
+}
+.map-runner {
+  transform: translate(-50%, -74%) scaleX(var(--runner-direction)) !important;
+}
+@media (max-width: 760px) {
+  .isometric-map-plate {
+    transform: rotateX(52deg) rotateZ(-6deg) translateY(-8px) scale(1.02);
+  }
+  .province-landmark {
+    width: 20px;
+    height: 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .terrain-ridges,
+  .province-landmark,
+  .map-fog-layer {
+    animation: none !important;
+  }
+}
+
+/* final correction: no emoji/particle artifacts, make map extrusion visible */
+.leaf,
+.living-map-particles,
+.map-runner {
+  display: none !important;
+}
+.isometric-map-plate {
+  transform: rotateX(62deg) rotateZ(-9deg) translateY(-36px) scale(1.08) !important;
+  filter: drop-shadow(28px 38px 0 rgba(100, 50, 24, 0.24)) drop-shadow(0 68px 64px rgba(58, 29, 12, 0.28));
+}
+.map-depth {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  opacity: 0.48;
+  filter: sepia(0.55) saturate(1.6) hue-rotate(-18deg) brightness(0.72) contrast(1.15);
+}
+.depth-a { transform: translate3d(10px, 16px, -54px); opacity: 0.5; }
+.depth-b { transform: translate3d(18px, 28px, -92px); opacity: 0.36; }
+.depth-c { transform: translate3d(26px, 40px, -132px); opacity: 0.24; }
+.map-base {
+  position: relative;
+  z-index: 4;
+  transform: translateZ(28px) !important;
+}
+.terrain-ridges { z-index: 5; }
+.province-landmarks { z-index: 8; }
+.map-fog-layer { z-index: 9; }
+.province-landmark {
+  width: clamp(26px, 3vw, 42px);
+  height: clamp(30px, 3.5vw, 48px);
+}
+.map-cards-html,
+.map-pins,
+.map-leaders {
+  position: absolute;
+  z-index: 20;
+}
+.map-leaders { z-index: 12; }
+.map-pins { z-index: 18; }
+.map-cards-html { z-index: 22; }
+
+/* visibility boost for real SVG landmark illustrations */
+.province-landmarks {
+  z-index: 30 !important;
+  transform: translateZ(180px) !important;
+}
+.province-landmark {
+  width: clamp(42px, 4.8vw, 68px) !important;
+  height: clamp(52px, 5.8vw, 82px) !important;
+  transform: translate(-50%, -82%) scale(var(--scale)) rotateZ(9deg) !important;
+  opacity: 0.96;
+}
+.landmark-svg {
+  width: 100% !important;
+  height: 78% !important;
+  filter: drop-shadow(0 9px 7px rgba(76, 37, 16, 0.3));
+}
+.province-landmark em {
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  z-index: 3;
+  max-width: 68px;
+  padding: 2px 5px;
+  border-radius: 999px;
+  color: #6c321b;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+  background: rgba(255, 245, 228, 0.78);
+  border: 1px solid rgba(139, 74, 42, 0.18);
+  box-shadow: 0 5px 9px rgba(80, 40, 18, 0.16);
+  transform: translateX(-50%);
+}
+.landmark-glow {
+  width: 78% !important;
+  height: 18% !important;
+  bottom: 8px !important;
+  opacity: 0.9;
+}
+.isometric-map-plate::before {
+  background: linear-gradient(135deg, rgba(117, 55, 25, 0.52), rgba(190, 105, 45, 0.38)) !important;
+  transform: translate3d(30px, 50px, -120px) scale(0.98) !important;
+}
+.map-depth {
+  opacity: 0.74 !important;
+  filter: sepia(0.7) saturate(1.8) hue-rotate(-20deg) brightness(0.58) contrast(1.25) !important;
+}
+.depth-a { transform: translate3d(16px, 28px, -64px) !important; opacity: 0.66 !important; }
+.depth-b { transform: translate3d(30px, 50px, -116px) !important; opacity: 0.46 !important; }
+.depth-c { transform: translate3d(44px, 72px, -168px) !important; opacity: 0.32 !important; }
+
+.province-landmarks-visible {
+  position: absolute;
+  inset: 0;
+  z-index: 16 !important;
+  transform: none !important;
+  pointer-events: none;
+}
+.province-landmarks-visible .province-landmark {
+  transform: translate(-50%, -88%) scale(var(--scale)) !important;
+}
+.province-landmarks-visible .landmark-svg {
+  height: 82% !important;
+}
+.province-landmarks-visible .province-landmark em {
+  display: block;
+}
+
+/* make SVG landmark drawings unmistakable */
+.province-landmarks-visible .province-landmark {
+  width: clamp(58px, 6.2vw, 88px) !important;
+  height: clamp(66px, 7.2vw, 104px) !important;
+}
+.province-landmarks-visible .landmark-svg {
+  height: 70% !important;
+  padding: 4px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 246, 226, 0.88), rgba(229, 182, 111, 0.42));
+  border: 1px solid rgba(126, 61, 28, 0.22);
+  box-shadow: 0 10px 16px rgba(92, 45, 18, 0.2), inset 0 1px 0 rgba(255,255,255,0.6);
+}
+.province-landmarks-visible .province-landmark em {
+  bottom: 2px;
+  font-size: 10px;
+  background: rgba(255, 248, 235, 0.94);
+}
