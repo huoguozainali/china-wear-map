@@ -267,7 +267,7 @@ const commerceProducts = document.getElementById('commerceProducts');
 const backBtn = document.getElementById('backBtn');
 const detailBackdrop = document.querySelector('.detail-backdrop');
 let mapRunner;
-let runnerCurrent = { x: 484, y: 301 };
+let runnerCurrent = { x: 486, y: 228 };
 let runnerMoving = false;
 
 function projectPoint(lon, lat) {
@@ -423,7 +423,17 @@ function buildMapRunner() {
   return `
     <div class="map-runner" id="mapRunner" style="left:${left}%;top:${top}%;" aria-hidden="true">
       <span class="runner-shadow"></span>
-      <svg class="runner-doll" viewBox="0 0 88 112" role="img" aria-label="奔跑去目的地的小人">
+      <span class="runner-sticker" aria-hidden="true">
+        <i class="runner-ear runner-ear-left"></i>
+        <i class="runner-ear runner-ear-right"></i>
+        <i class="runner-head"></i>
+        <i class="runner-body"><b></b><b></b><b></b></i>
+        <i class="runner-pants runner-pants-left"></i>
+        <i class="runner-pants runner-pants-right"></i>
+        <i class="runner-shoe runner-shoe-left"></i>
+        <i class="runner-shoe runner-shoe-right"></i>
+      </span>
+      <svg class="runner-doll" viewBox="0 0 88 124" role="img" aria-label="奔跑去目的地的小人">
         <defs>
           <radialGradient id="runnerHat" cx="42%" cy="24%" r="72%">
             <stop offset="0" stop-color="#b98251" />
@@ -452,15 +462,17 @@ function buildMapRunner() {
             <path d="M61 58c12 7 16 16 12 26" fill="none" stroke="#201d1a" stroke-width="11" stroke-linecap="round" />
             <path d="M72 82c-3 5-8 5-11 1" fill="none" stroke="#e5d8c5" stroke-width="7" stroke-linecap="round" />
           </g>
-          <path d="M24 50c7-9 33-9 40 0 9 12 9 36 0 44-7 6-33 6-40 0-9-8-9-32 0-44Z" fill="url(#runnerJacket)" />
-          <path d="M24 62h40M22 74h44M24 86h40" fill="none" stroke="#fff7eb" stroke-width="2.2" stroke-linecap="round" opacity="0.22" />
+          <path d="M24 50c7-9 33-9 40 0 8 10 8 29 0 36-8 6-32 6-40 0-8-7-8-26 0-36Z" fill="url(#runnerJacket)" />
+          <path d="M24 62h40M22 73h44M26 83h36" fill="none" stroke="#fff7eb" stroke-width="2.2" stroke-linecap="round" opacity="0.22" />
           <path d="M29 54c8-5 22-6 31 0" fill="none" stroke="#fff7eb" stroke-width="2.8" stroke-linecap="round" opacity="0.24" />
+          <path d="M31 84c4 3 9 3 13 0l-3 25H28c0-8 1-17 3-25Z" fill="url(#runnerPants)" />
+          <path d="M55 84c-4 3-9 3-13 0l4 25h13c0-8-1-17-4-25Z" fill="url(#runnerPants)" />
           <g class="runner-leg runner-leg-left">
-            <path d="M34 91c-2 8-2 15-7 21" fill="none" stroke="url(#runnerPants)" stroke-width="13" stroke-linecap="round" />
+            <path d="M34 84c-2 10-2 19-7 28" fill="none" stroke="url(#runnerPants)" stroke-width="13" stroke-linecap="round" />
             <path d="M22 109c7-5 15-4 20 2" fill="none" stroke="#b64227" stroke-width="9" stroke-linecap="round" />
           </g>
           <g class="runner-leg runner-leg-right">
-            <path d="M55 91c4 8 5 15 10 21" fill="none" stroke="url(#runnerPants)" stroke-width="13" stroke-linecap="round" />
+            <path d="M55 84c4 10 5 19 10 28" fill="none" stroke="url(#runnerPants)" stroke-width="13" stroke-linecap="round" />
             <path d="M57 111c8-4 16-2 21 4" fill="none" stroke="#b64227" stroke-width="9" stroke-linecap="round" />
           </g>
           <path d="M30 48c10 7 20 7 29 0" fill="none" stroke="#f5e8d7" stroke-width="5" stroke-linecap="round" opacity="0.75" />
