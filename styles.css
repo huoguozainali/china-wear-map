@@ -1268,3 +1268,230 @@ button { font: inherit; }
     animation: none;
   }
 }
+
+/* refined inline-SVG clay runner */
+.runner-doll {
+  display: block;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.runner-sticker,
+.runner-shadow {
+  display: none;
+}
+.runner-bob {
+  transform-box: fill-box;
+  transform-origin: 50% 88%;
+  animation: runnerIdle 2.7s ease-in-out infinite;
+}
+.runner-ground-shadow {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: runnerShadowIdle 2.7s ease-in-out infinite;
+}
+.runner-head-group {
+  transform-box: fill-box;
+  transform-origin: 50% 74%;
+}
+.runner-arm,
+.runner-leg {
+  transform-box: fill-box;
+}
+.runner-arm-left { transform-origin: 82% 8%; }
+.runner-arm-right { transform-origin: 18% 8%; }
+.runner-leg-left { transform-origin: 72% 5%; }
+.runner-leg-right { transform-origin: 28% 5%; }
+.map-runner.is-running .runner-bob {
+  animation: runnerBob 0.38s ease-in-out infinite;
+}
+.map-runner.is-running .runner-ground-shadow {
+  animation: runnerShadowRun 0.38s ease-in-out infinite;
+}
+.map-runner.is-running .runner-head-group {
+  animation: runnerHeadRun 0.38s ease-in-out infinite;
+}
+.map-runner.is-running .runner-arm-left,
+.map-runner.is-running .runner-leg-right {
+  animation: runnerLimbForward 0.38s ease-in-out infinite;
+}
+.map-runner.is-running .runner-arm-right,
+.map-runner.is-running .runner-leg-left {
+  animation: runnerLimbBack 0.38s ease-in-out infinite;
+}
+.map-runner.has-arrived .runner-bob {
+  animation: runnerArrive 0.24s ease-out;
+}
+@keyframes runnerHeadRun {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(3deg); }
+}
+@keyframes runnerLimbForward {
+  0%, 100% { transform: rotate(18deg) translateY(0); }
+  50% { transform: rotate(-24deg) translateY(-2px); }
+}
+@keyframes runnerLimbBack {
+  0%, 100% { transform: rotate(-24deg) translateY(-2px); }
+  50% { transform: rotate(18deg) translateY(0); }
+}
+@media (max-width: 900px) {
+  .map-runner {
+    width: clamp(64px, 12vw, 86px);
+    height: clamp(84px, 15vw, 112px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .runner-bob,
+  .runner-ground-shadow,
+  .map-runner.is-running .runner-bob,
+  .map-runner.is-running .runner-ground-shadow,
+  .map-runner.is-running .runner-head-group,
+  .map-runner.is-running .runner-arm-left,
+  .map-runner.is-running .runner-arm-right,
+  .map-runner.is-running .runner-leg-left,
+  .map-runner.is-running .runner-leg-right {
+    animation: none;
+  }
+}
+
+/* make the rebuilt clay runner more legible on the map */
+.map-runner {
+  width: clamp(82px, 9.4vw, 112px);
+  height: clamp(112px, 12.4vw, 150px);
+}
+
+/* final emoji runner: use native system character instead of drawn SVG */
+.map-runner {
+  width: 72px;
+  height: 78px;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -74%) scaleX(var(--runner-direction));
+  filter: none;
+}
+.runner-doll,
+.runner-sticker,
+.runner-shadow,
+.runner-bob,
+.runner-ground-shadow {
+  display: none !important;
+}
+.runner-glow {
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 58px;
+  height: 18px;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at center, rgba(95, 49, 24, 0.26) 0%, rgba(95, 49, 24, 0.12) 48%, rgba(95, 49, 24, 0) 72%),
+    radial-gradient(ellipse at center, rgba(245, 190, 104, 0.28), rgba(245, 190, 104, 0) 70%);
+  filter: blur(1px);
+  transform: translateX(-50%);
+  animation: emojiShadowIdle 2.6s ease-in-out infinite;
+}
+.runner-emoji {
+  position: relative;
+  z-index: 2;
+  display: block;
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+  font-size: clamp(42px, 5vw, 52px);
+  line-height: 1;
+  transform: scaleX(var(--runner-direction));
+  transform-origin: 50% 88%;
+  filter: drop-shadow(0 10px 12px rgba(64, 33, 16, 0.24));
+  animation: emojiIdle 2.6s ease-in-out infinite;
+  will-change: transform;
+}
+.map-runner.is-running .runner-emoji {
+  animation: emojiRun 0.34s ease-in-out infinite;
+}
+.map-runner.is-running .runner-glow {
+  animation: emojiShadowRun 0.34s ease-in-out infinite;
+}
+.map-runner.has-arrived .runner-emoji {
+  animation: emojiArrive 0.24s ease-out;
+}
+@keyframes emojiIdle {
+  0%, 100% { transform: scaleX(var(--runner-direction)) translateY(0) rotate(-1deg); }
+  50% { transform: scaleX(var(--runner-direction)) translateY(-5px) rotate(1.5deg); }
+}
+@keyframes emojiRun {
+  0%, 100% { transform: scaleX(var(--runner-direction)) translateY(0) rotate(-8deg) scale(1.02); }
+  50% { transform: scaleX(var(--runner-direction)) translateY(-10px) rotate(8deg) scale(1.08); }
+}
+@keyframes emojiShadowIdle {
+  0%, 100% { opacity: 0.78; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.48; transform: translateX(-50%) scale(0.82); }
+}
+@keyframes emojiShadowRun {
+  0%, 100% { opacity: 0.78; transform: translateX(-50%) scale(1.08); }
+  50% { opacity: 0.38; transform: translateX(-50%) scale(0.7); }
+}
+@keyframes emojiArrive {
+  0% { transform: scaleX(var(--runner-direction)) translateY(-8px) scale(1.12); }
+  100% { transform: scaleX(var(--runner-direction)) translateY(0) scale(1); }
+}
+@media (max-width: 900px) {
+  .map-runner {
+    width: 64px;
+    height: 70px;
+  }
+  .runner-emoji { font-size: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .runner-emoji,
+  .runner-glow,
+  .map-runner.is-running .runner-emoji,
+  .map-runner.is-running .runner-glow,
+  .map-runner.has-arrived .runner-emoji {
+    animation: none;
+  }
+}
+
+.runner-glow {
+  bottom: 0;
+  width: 66px;
+  height: 22px;
+  background:
+    radial-gradient(ellipse at center, rgba(70, 32, 12, 0.42) 0%, rgba(70, 32, 12, 0.22) 42%, rgba(70, 32, 12, 0) 72%),
+    radial-gradient(ellipse at center, rgba(235, 166, 72, 0.34), rgba(235, 166, 72, 0) 76%);
+  filter: blur(0.6px);
+}
+
+.runner-glow {
+  z-index: 1;
+  bottom: 12px;
+  width: 62px;
+  height: 18px;
+  background: rgba(70, 32, 12, 0.34);
+  box-shadow: 0 0 0 8px rgba(221, 151, 68, 0.14), 0 0 18px rgba(180, 94, 42, 0.22);
+  filter: blur(2px);
+}
+.runner-emoji { z-index: 2; }
+
+.runner-glow {
+  display: block;
+  left: 50%;
+  bottom: 10px;
+  width: 70px;
+  height: 20px;
+  border: 1px solid rgba(137, 75, 28, 0.26);
+  background: radial-gradient(ellipse at center, rgba(255, 206, 103, 0.74) 0%, rgba(169, 82, 35, 0.34) 50%, rgba(169, 82, 35, 0) 76%);
+  box-shadow: 0 0 18px rgba(211, 137, 49, 0.46);
+  transform: translateX(-50%);
+  opacity: 0.95;
+}
+
+.runner-glow {
+  z-index: 3;
+  bottom: 8px;
+  background: rgba(255, 184, 68, 0.55);
+  border: 2px solid rgba(120, 58, 18, 0.34);
+  filter: none;
+  mix-blend-mode: multiply;
+}

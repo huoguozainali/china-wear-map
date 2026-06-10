@@ -422,62 +422,8 @@ function buildMapRunner() {
   const top = (runnerCurrent.y / VB_H * 100).toFixed(3);
   return `
     <div class="map-runner" id="mapRunner" style="left:${left}%;top:${top}%;" aria-hidden="true">
-      <span class="runner-shadow"></span>
-      <span class="runner-sticker" aria-hidden="true">
-        <i class="runner-ear runner-ear-left"></i>
-        <i class="runner-ear runner-ear-right"></i>
-        <i class="runner-head"></i>
-        <i class="runner-body"><b></b><b></b><b></b></i>
-        <i class="runner-pants runner-pants-left"></i>
-        <i class="runner-pants runner-pants-right"></i>
-        <i class="runner-shoe runner-shoe-left"></i>
-        <i class="runner-shoe runner-shoe-right"></i>
-      </span>
-      <svg class="runner-doll" viewBox="0 0 88 124" role="img" aria-label="奔跑去目的地的小人">
-        <defs>
-          <radialGradient id="runnerHat" cx="42%" cy="24%" r="72%">
-            <stop offset="0" stop-color="#b98251" />
-            <stop offset="1" stop-color="#6e3f25" />
-          </radialGradient>
-          <linearGradient id="runnerJacket" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0" stop-color="#34312e" />
-            <stop offset="0.52" stop-color="#171716" />
-            <stop offset="1" stop-color="#3b332b" />
-          </linearGradient>
-          <linearGradient id="runnerPants" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0" stop-color="#f3e9d8" />
-            <stop offset="1" stop-color="#cdbca3" />
-          </linearGradient>
-        </defs>
-        <g class="runner-tilt">
-          <ellipse cx="26" cy="22" rx="10" ry="12" fill="url(#runnerHat)" />
-          <ellipse cx="62" cy="22" rx="10" ry="12" fill="url(#runnerHat)" />
-          <ellipse cx="44" cy="33" rx="26" ry="25" fill="url(#runnerHat)" />
-          <path d="M22 37c8 8 34 9 45 0 0 13-10 24-23 24S22 50 22 37Z" fill="#7a492b" opacity="0.45" />
-          <g class="runner-arm runner-arm-left">
-            <path d="M27 57c-12 6-17 15-15 25" fill="none" stroke="#201d1a" stroke-width="11" stroke-linecap="round" />
-            <path d="M17 81c2 5 7 6 11 2" fill="none" stroke="#e5d8c5" stroke-width="7" stroke-linecap="round" />
-          </g>
-          <g class="runner-arm runner-arm-right">
-            <path d="M61 58c12 7 16 16 12 26" fill="none" stroke="#201d1a" stroke-width="11" stroke-linecap="round" />
-            <path d="M72 82c-3 5-8 5-11 1" fill="none" stroke="#e5d8c5" stroke-width="7" stroke-linecap="round" />
-          </g>
-          <path d="M24 50c7-9 33-9 40 0 8 10 8 29 0 36-8 6-32 6-40 0-8-7-8-26 0-36Z" fill="url(#runnerJacket)" />
-          <path d="M24 62h40M22 73h44M26 83h36" fill="none" stroke="#fff7eb" stroke-width="2.2" stroke-linecap="round" opacity="0.22" />
-          <path d="M29 54c8-5 22-6 31 0" fill="none" stroke="#fff7eb" stroke-width="2.8" stroke-linecap="round" opacity="0.24" />
-          <path d="M31 84c4 3 9 3 13 0l-3 25H28c0-8 1-17 3-25Z" fill="url(#runnerPants)" />
-          <path d="M55 84c-4 3-9 3-13 0l4 25h13c0-8-1-17-4-25Z" fill="url(#runnerPants)" />
-          <g class="runner-leg runner-leg-left">
-            <path d="M34 84c-2 10-2 19-7 28" fill="none" stroke="url(#runnerPants)" stroke-width="13" stroke-linecap="round" />
-            <path d="M22 109c7-5 15-4 20 2" fill="none" stroke="#b64227" stroke-width="9" stroke-linecap="round" />
-          </g>
-          <g class="runner-leg runner-leg-right">
-            <path d="M55 84c4 10 5 19 10 28" fill="none" stroke="url(#runnerPants)" stroke-width="13" stroke-linecap="round" />
-            <path d="M57 111c8-4 16-2 21 4" fill="none" stroke="#b64227" stroke-width="9" stroke-linecap="round" />
-          </g>
-          <path d="M30 48c10 7 20 7 29 0" fill="none" stroke="#f5e8d7" stroke-width="5" stroke-linecap="round" opacity="0.75" />
-        </g>
-      </svg>
+      <span class="runner-glow"></span>
+      <span class="runner-emoji" data-stand="🧍‍♀️" data-run="🏃‍♀️">🧍‍♀️</span>
     </div>
   `;
 }
@@ -506,6 +452,8 @@ function animateRunnerTo(item) {
     const controlX = (startX + targetX) / 2;
     const controlY = (startY + targetY) / 2 - arc;
     const startTime = performance.now();
+    const runnerEmoji = mapRunner.querySelector('.runner-emoji');
+    if (runnerEmoji) runnerEmoji.textContent = runnerEmoji.dataset.run;
     mapRunner.classList.add('is-running');
     mapRunner.style.setProperty('--runner-direction', dx < 0 ? '-1' : '1');
 
@@ -521,6 +469,7 @@ function animateRunnerTo(item) {
       }
       setRunnerPosition(targetX, targetY);
       mapRunner.classList.remove('is-running');
+      if (runnerEmoji) runnerEmoji.textContent = runnerEmoji.dataset.stand;
       mapRunner.classList.add('has-arrived');
       window.setTimeout(() => {
         mapRunner.classList.remove('has-arrived');
