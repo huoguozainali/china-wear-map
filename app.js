@@ -559,7 +559,7 @@ function buildProducts(itemId) {
       { name: '咖色宽腿裤', price: '¥179', image: './assets/product_zhangye_3.png' }
     ],
     jiuzhaigou: [
-      { name: '童话彩色针织', price: '¥159', image: './assets/product_jiuzhaigou_1.png' },
+      { name: '柔和暖感针织', price: '¥159', image: './assets/product_jiuzhaigou_1.png' },
       { name: '湖蓝拼色外套', price: '¥299', image: './assets/product_jiuzhaigou_2.png' },
       { name: '撞色半身裙', price: '¥169', image: './assets/product_jiuzhaigou_3.png' }
     ],
