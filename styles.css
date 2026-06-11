@@ -125,12 +125,12 @@ button { font: inherit; }
   pointer-events: none;
   flex-shrink: 0;
 }
-/* 顶部眉栏：上 = AUTUMN EDIT 英文眉题，下 = 中国穿衣地图 站名（杂志式纵向版式） */
+/* 顶部眉栏：左 = 中国穿衣地图，右 = AUTUMN EDIT 英文眉题（杂志式横向版式） */
 .masthead-bar {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
   width: 100%;
   padding-bottom: 9px;
   border-bottom: 1px solid rgba(122, 74, 43, 0.32);
