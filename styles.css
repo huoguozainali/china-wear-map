@@ -52,9 +52,10 @@ button { font: inherit; }
 
 .landing-page {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 0;
   padding: 14px;
-  overflow: visible;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -168,33 +169,33 @@ button { font: inherit; }
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
 }
-.masthead-sub {
-  margin: 6px 0 0;
-  color: var(--muted);
-  font-size: clamp(11.5px, 0.92vw, 14px);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-}
-
 .map-stage {
   position: relative;
-  flex: 1 1 auto;
+  flex: 1 1 0;
   width: 100%;
   min-height: 0;
   margin: 0;
   overflow: visible;
   z-index: 2;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 }
 .china-map {
   position: relative;
   width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .map-shell {
   position: relative;
-  width: 100%;
+  width: min(100%, calc(100% * 1.490566));
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  aspect-ratio: 2528 / 1696;
   overflow: visible;
   -webkit-mask-image: none;
   mask-image: none;
@@ -203,7 +204,9 @@ button { font: inherit; }
 .map-base {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 22px;
   mix-blend-mode: normal;
   filter: saturate(1.05) contrast(1.02);
 }

@@ -6,7 +6,7 @@ const DESTINATIONS = [
   {
     id: 'kanas', name: '喀纳斯', region: '西北 · 新疆', shortAddress: '新疆·喀纳斯',
     address: '新疆阿勒泰地区布尔津县喀纳斯景区', window: '9月中下旬', monthChip: '9月',
-    temp: '4°C', weather: 'snow', vibe: '裹进白桦金里',
+    temp: '0°C', weather: 'snow', vibe: '裹进白桦金里',
     scene: '金黄白桦 · 湖泊山林 · 油画感秋色',
     summary: '白桦金、湖泊与冷空气把画面拉得格外饱满，越有层次与质地，越撑得起这片北疆秋色。',
     advice: '山野机能风 · 驼棕系层搭', lookTitle: '山野机能驼棕 LOOK',
@@ -18,7 +18,7 @@ const DESTINATIONS = [
   {
     id: 'aershan', name: '阿尔山', region: '北境 · 内蒙古', shortAddress: '内蒙古·阿尔山',
     address: '内蒙古自治区兴安盟阿尔山市', window: '9月中下旬', monthChip: '9月',
-    temp: '8°C', weather: 'snow', vibe: '穿够厚才敢野',
+    temp: '-1°C', weather: 'snow', vibe: '穿够厚才敢野',
     scene: '森林 · 火山地貌 · 金色草甸',
     summary: '气温掉得快，清晨与傍晚已近初冬边缘，穿搭要有体积感，才压得住开阔的北地。',
     advice: '高地保暖风 · 北地旅行', lookTitle: '北地保暖叠穿 LOOK',
@@ -30,7 +30,7 @@ const DESTINATIONS = [
   {
     id: 'daocheng', name: '稻城亚丁', region: '高原 · 四川', shortAddress: '四川·稻城亚丁',
     address: '四川省甘孜藏族自治州稻城县亚丁景区', window: '9月下旬—10月上旬', monthChip: '9-10月',
-    temp: '2°C', weather: 'snow', vibe: '冲锋衣也能拍封面',
+    temp: '0°C', weather: 'snow', vibe: '冲锋衣也能拍封面',
     scene: '雪山 · 草甸 · 金黄树林 · 高原光感',
     summary: '日照强但空气很冷，昼夜温差极大，穿搭需要强对比与足够能量，才配得上这片高原。',
     advice: '高原户外美学 · 亮色冲锋', lookTitle: '高原亮色机能 LOOK',
@@ -42,7 +42,7 @@ const DESTINATIONS = [
   {
     id: 'changbaishan', name: '长白山', region: '东北 · 吉林', shortAddress: '吉林·长白山',
     address: '吉林省延边朝鲜族自治州安图县长白山景区', window: '9月下旬—10月上旬', monthChip: '9-10月',
-    temp: '5°C', weather: 'snow', vibe: '整座山为你层林尽染',
+    temp: '-2°C', weather: 'snow', vibe: '整座山为你层林尽染',
     scene: '层林尽染 · 山脊云雾 · 冷杉红叶',
     summary: '早晚凉意重、山上风大，拍照久站容易冷，深色调与厚针织比甜美风更贴这片山色。',
     advice: '山地旅行风 · 酒红苔绿奶白', lookTitle: '山地酒红针织 LOOK',
@@ -54,7 +54,7 @@ const DESTINATIONS = [
   {
     id: 'jiuzhaigou', name: '九寨沟', region: '高原 · 四川', shortAddress: '四川·九寨沟',
     address: '四川省阿坝藏族羌族自治州九寨沟县', window: '10月中上旬', monthChip: '10月',
-    temp: '12°C', weather: 'leaf', vibe: '撞色撞进童话里',
+    temp: '9°C', weather: 'leaf', vibe: '撞色撞进童话里',
     scene: '彩林 · 海子 · 瀑布 · 蓝绿金红撞色',
     summary: '白天舒适、入夜转凉，景区步行时间长，柔和针织与撞色层搭最容易出片。',
     advice: '彩林出片风 · 柔和针织撞色', lookTitle: '彩林撞色针织 LOOK',
@@ -66,7 +66,7 @@ const DESTINATIONS = [
   {
     id: 'xiangshan', name: '香山', region: '华北 · 北京', shortAddress: '北京·香山',
     address: '北京市海淀区香山公园', window: '10月下旬—11月上旬', monthChip: '10-11月',
-    temp: '17°C', weather: 'leaf', vibe: '一件风衣过整个秋',
+    temp: '11°C', weather: 'leaf', vibe: '一件风衣过整个秋',
     scene: '红叶 · 山道 · 公园城市感',
     summary: '典型的城市秋日早晚凉、中午尚可，通勤与旅行两用，最适合时髦克制的街拍穿法。',
     advice: '都市赏秋风 · 通勤街拍', lookTitle: '都市通勤风衣 LOOK',
@@ -78,7 +78,7 @@ const DESTINATIONS = [
   {
     id: 'qixiashan', name: '栖霞山', region: '华东 · 南京', shortAddress: '南京·栖霞山',
     address: '江苏省南京市栖霞区栖霞山风景区', window: '11月中上旬', monthChip: '11月',
-    temp: '24°C', weather: 'leaf', vibe: '新中式红到出片',
+    temp: '20°C', weather: 'leaf', vibe: '新中式红到出片',
     scene: '枫叶 · 寺院 · 石阶古意',
     summary: '早晚偏凉、白天舒适，适合轻外套与层次穿法，新中式与复古文艺都很对味。',
     advice: '新中式秋游风 · 复古文艺', lookTitle: '新中式复古 LOOK',
@@ -90,7 +90,7 @@ const DESTINATIONS = [
   {
     id: 'tianpingshan', name: '天平山', region: '华东 · 苏州', shortAddress: '苏州·天平山',
     address: '江苏省苏州市吴中区天平山风景区', window: '11月中下旬', monthChip: '11月',
-    temp: '26°C', weather: 'leaf', vibe: '江南的奶咖味',
+    temp: '22°C', weather: 'leaf', vibe: '江南的奶咖味',
     scene: '江南红枫 · 园林 · 古典景框',
     summary: '温差中等、湿润感更强，体感不刺骨但早晚有凉意，奶咖针织叠搭最贴江南气质。',
     advice: '江南轻复古 · 奶咖针织', lookTitle: '江南奶咖针织 LOOK',
@@ -102,7 +102,7 @@ const DESTINATIONS = [
   {
     id: 'tengchong', name: '腾冲银杏村', region: '西南 · 云南', shortAddress: '云南·腾冲',
     address: '云南省保山市腾冲市固东镇江东银杏村', window: '11月中下旬', monthChip: '11月',
-    temp: '19°C', weather: 'glow', vibe: '站进一场银杏雨',
+    temp: '17°C', weather: 'glow', vibe: '站进一场银杏雨',
     scene: '银杏雨 · 村落 · 暖黄光感',
     summary: '白天相对温和、早晚偏凉，适合“轻保暖、重氛围”的穿法，暖调文艺最治愈。',
     advice: '暖调文艺风 · 奶油姜黄焦糖', lookTitle: '暖调银杏文艺 LOOK',
@@ -114,7 +114,7 @@ const DESTINATIONS = [
   {
     id: 'wuyuan', name: '婺源篁岭', region: '华东 · 江西', shortAddress: '江西·婺源',
     address: '江西省上饶市婺源县篁岭 / 石城', window: '11月中下旬', monthChip: '11月',
-    temp: '28°C', weather: 'leaf', vibe: '晒秋人家的复古感',
+    temp: '23°C', weather: 'leaf', vibe: '晒秋人家的复古感',
     scene: '晒秋 · 徽派村落 · 晨雾',
     summary: '清晨偏凉、白天舒适，适合拍晨雾与日出时段的层搭，复古暖色系最有古村氛围。',
     advice: '古村氛围风 · 复古夹克', lookTitle: '古村复古夹克 LOOK',
@@ -126,7 +126,7 @@ const DESTINATIONS = [
   {
     id: 'linzhi', name: '林芝', region: '高原 · 西藏', shortAddress: '西藏·林芝',
     address: '西藏自治区林芝市米林县雅鲁藏布大峡谷', window: '10月中下旬', monthChip: '10月',
-    temp: '13°C', weather: 'snow', vibe: '雪山脚下的高级感',
+    temp: '10°C', weather: 'snow', vibe: '雪山脚下的高级感',
     scene: '南迦巴瓦雪山 · 金黄杨林 · 高原秋色',
     summary: '高原日照强、空气却冷，昼夜温差大，亮色机能与层叠穿法既保暖又压得住雪山背景。',
     advice: '高原户外风 · 亮色机能', lookTitle: '高原亮色机能 LOOK',
@@ -138,7 +138,7 @@ const DESTINATIONS = [
   {
     id: 'zhangye', name: '张掖', region: '西北 · 甘肃', shortAddress: '甘肃·张掖',
     address: '甘肃省张掖市临泽县七彩丹霞景区', window: '9月下旬—10月', monthChip: '9-10月',
-    temp: '13°C', weather: 'leaf', vibe: '大地色穿在大地上',
+    temp: '8°C', weather: 'leaf', vibe: '大地色穿在大地上',
     scene: '七彩丹霞 · 层叠彩岩 · 日落金光',
     summary: '西北秋日昼暖夜凉、风大干爽，大地色廓形外套与丹霞撞色，旷野感十足。',
     advice: '西北旷野风 · 大地色廓形', lookTitle: '旷野大地色 LOOK',
@@ -150,7 +150,7 @@ const DESTINATIONS = [
   {
     id: 'xian', name: '西安', region: '西北 · 陕西', shortAddress: '陕西·西安',
     address: '陕西省西安市长安区古观音禅寺 / 西安城墙', window: '11月中上旬', monthChip: '11月',
-    temp: '17°C', weather: 'leaf', vibe: '千年银杏当背景板',
+    temp: '14°C', weather: 'leaf', vibe: '千年银杏当背景板',
     scene: '古寺银杏 · 城墙古意 · 金色落叶',
     summary: '古都秋日早晚偏凉、白天舒适，新中式与复古文艺在千年银杏下格外有故事。',
     advice: '新中式古都风 · 复古文艺', lookTitle: '新中式古都 LOOK',
@@ -162,7 +162,7 @@ const DESTINATIONS = [
   {
     id: 'zhangjiajie', name: '张家界', region: '华中 · 湖南', shortAddress: '湖南·张家界',
     address: '湖南省张家界市武陵源风景区', window: '10月—11月上旬', monthChip: '10-11月',
-    temp: '21°C', weather: 'leaf', vibe: '云海里走出大片',
+    temp: '20°C', weather: 'leaf', vibe: '云海里走出大片',
     scene: '峰林 · 云海 · 秋林',
     summary: '山间湿润多雾、早晚转凉，登高久站需要保暖，山系机能深色调最贴峰林气质。',
     advice: '山系机能风 · 深色利落', lookTitle: '山系机能 LOOK',
@@ -174,7 +174,7 @@ const DESTINATIONS = [
   {
     id: 'chongqing', name: '重庆', region: '西南 · 重庆', shortAddress: '重庆·山城',
     address: '重庆市渝中区山城步道 / 洪崖洞一带', window: '11月—12月上旬', monthChip: '11-12月',
-    temp: '25°C', weather: 'glow', vibe: '山城自带氛围感',
+    temp: '21°C', weather: 'glow', vibe: '山城自带氛围感',
     scene: '山城层叠 · 两江暮色 · 暖调街景',
     summary: '秋冬温和湿润、体感舒适，山城阶梯与街景适合时髦慵懒的街拍穿法。',
     advice: '都市街拍风 · 慵懒高级', lookTitle: '都市街拍 LOOK',
@@ -186,7 +186,7 @@ const DESTINATIONS = [
   {
     id: 'hangzhou', name: '杭州', region: '华东 · 浙江', shortAddress: '浙江·杭州',
     address: '浙江省杭州市西湖北山街 / 满觉陇', window: '11月中下旬', monthChip: '11月',
-    temp: '27°C', weather: 'leaf', vibe: '西湖边的温柔梧桐',
+    temp: '23°C', weather: 'leaf', vibe: '西湖边的温柔梧桐',
     scene: '梧桐金黄 · 西湖远山 · 江南秋光',
     summary: '江南秋日温润、早晚微凉，奶咖针织与长大衣在梧桐林荫里温柔又高级。',
     advice: '江南温柔风 · 奶咖针织', lookTitle: '江南温柔 LOOK',
@@ -198,7 +198,7 @@ const DESTINATIONS = [
   {
     id: 'conghua', name: '从化', region: '华南 · 广东', shortAddress: '广东·从化',
     address: '广东省广州市从化区石门国家森林公园', window: '12月—次年1月', monthChip: '12-1月',
-    temp: '26°C', weather: 'glow', vibe: '岭南暖秋不用裹',
+    temp: '25°C', weather: 'glow', vibe: '岭南暖秋不用裹',
     scene: '流溪红叶 · 暖黄山谷 · 岭南暖秋',
     summary: '岭南暖秋来得晚、白天温暖，轻薄针织外搭一件风衣就够，色彩可以明快起来。',
     advice: '岭南暖秋风 · 轻薄明快', lookTitle: '岭南暖秋 LOOK',
@@ -210,7 +210,7 @@ const DESTINATIONS = [
   {
     id: 'mohe', name: '漠河', region: '极北 · 黑龙江', shortAddress: '黑龙江·漠河',
     address: '黑龙江省大兴安岭地区漠河市北极村', window: '9月下旬—10月', monthChip: '9-10月',
-    temp: '5°C', weather: 'snow', vibe: '最北的雪先到了',
+    temp: '-3°C', weather: 'snow', vibe: '最北的雪先到了',
     scene: '北极村 · 白桦初雪 · 极北清冷',
     summary: '中国最北早早入冬，初雪与白桦交织，厚羽绒与毛呢叠穿是极北里最暖的镜头。',
     advice: '极北保暖风 · 厚质叠穿', lookTitle: '极北保暖 LOOK',
@@ -222,7 +222,7 @@ const DESTINATIONS = [
   {
     id: 'taihang', name: '太行山', region: '华北 · 山西', shortAddress: '山西·太行山',
     address: '山西省长治市壶关县太行山大峡谷', window: '10月中下旬', monthChip: '10月',
-    temp: '11°C', weather: 'leaf', vibe: '硬朗山系也能美',
+    temp: '10°C', weather: 'leaf', vibe: '硬朗山系也能美',
     scene: '红岩峡谷 · 层林尽染 · 雄浑山势',
     summary: '北方山区秋来早、早晚偏凉，山地旅行风夹克与针织马甲衬得起雄浑红岩峡谷。',
     advice: '山地旅行风 · 硬朗有型', lookTitle: '山地旅行 LOOK',
@@ -234,7 +234,7 @@ const DESTINATIONS = [
   {
     id: 'qiandongnan', name: '黔东南', region: '西南 · 贵州', shortAddress: '贵州·黔东南',
     address: '贵州省黔东南州西江千户苗寨', window: '10月—11月', monthChip: '10-11月',
-    temp: '22°C', weather: 'glow', vibe: '梯田金里的故事感',
+    temp: '19°C', weather: 'glow', vibe: '梯田金里的故事感',
     scene: '苗寨吊脚楼 · 金黄梯田 · 远山薄雾',
     summary: '黔东南秋日温和多雾、体感舒适，复古暖色与民族编织元素在梯田苗寨里很有故事。',
     advice: '复古民族风 · 暖色编织', lookTitle: '复古民族 LOOK',
