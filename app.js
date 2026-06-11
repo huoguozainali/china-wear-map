@@ -12,7 +12,7 @@ const DESTINATIONS = [
     advice: '山野机能风 · 驼棕系层搭', lookTitle: '山野机能驼棕',
     lookDesc: '抓绒 + 壳层 + 工装裤 + 靴子，驼棕大地色叠搭，远景近景都立得住。',
     tags: ['北疆金色', '山野机能', '驼棕层搭'],
-    coords: [87.0, 48.1],
+    coords: [87.130853, 48.507195],
     image: './assets/kanas.jpg', look: './assets/look_kanas.jpg'
   },
   {
@@ -329,7 +329,7 @@ const VB_H = MAP_PROJECTION.height;
    映射到 971×640 的地图工作区，保证目的地点位按真实经纬度落在底图对应位置。 */
 const CARD_OFFSET_SCALE = 1.12;
 const MANUAL_CARD_POS = {
-  kanas: { x: 270, y: 146 },
+  kanas: { x: 250, y: 89 },
   mohe: { x: 717, y: 69 },
   changbaishan: { x: 802, y: 213 },
   xiangshan: { x: 674, y: 242 },
