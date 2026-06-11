@@ -202,7 +202,7 @@ button { font: inherit; }
   -webkit-mask-image: none;
   mask-image: none;
 }
-/* 等比例完整显示，不裁剪不拉伸，图片原始比例 2528×1696 */
+/* 地图底图、SVG 引线、HTML 卡片与点位都挂在 .map-shell 内，随同一个坐标容器整体等比放大。 */
 .map-base {
   display: block;
   width: 100%;
