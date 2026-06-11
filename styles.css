@@ -1503,13 +1503,13 @@ button { font: inherit; }
   height: clamp(112px, 12.4vw, 150px);
 }
 
-/* final emoji runner: use native system character instead of drawn SVG */
+/* final runner duo: native emoji girl + Douyin Mall mascot, moving as a playful pair */
 .map-runner {
-  width: 72px;
-  height: 78px;
+  width: 118px;
+  height: 82px;
   z-index: 7;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   transform: translate(-50%, -74%) scaleX(var(--runner-direction));
   filter: none;
@@ -1525,8 +1525,8 @@ button { font: inherit; }
   position: absolute;
   left: 50%;
   bottom: 4px;
-  width: 58px;
-  height: 18px;
+  width: 104px;
+  height: 22px;
   border-radius: 50%;
   background:
     radial-gradient(ellipse at center, rgba(95, 49, 24, 0.26) 0%, rgba(95, 49, 24, 0.12) 48%, rgba(95, 49, 24, 0) 72%),
@@ -1535,21 +1535,54 @@ button { font: inherit; }
   transform: translateX(-50%);
   animation: emojiShadowIdle 2.6s ease-in-out infinite;
 }
-.runner-emoji {
+.runner-duo {
   position: relative;
   z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(var(--runner-direction));
+  transform-origin: 50% 88%;
+}
+.runner-emoji {
+  position: relative;
+  z-index: 3;
   display: block;
   font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
-  font-size: clamp(42px, 5vw, 52px);
+  font-size: clamp(40px, 4.8vw, 50px);
   line-height: 1;
-  transform: scaleX(var(--runner-direction));
   transform-origin: 50% 88%;
   filter: drop-shadow(0 10px 12px rgba(64, 33, 16, 0.24));
   animation: emojiIdle 2.6s ease-in-out infinite;
   will-change: transform;
 }
+.doudou-buddy {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: clamp(46px, 5.2vw, 58px);
+  height: clamp(46px, 5.2vw, 58px);
+  margin-left: -6px;
+  margin-bottom: 4px;
+  transform-origin: 50% 86%;
+  filter: drop-shadow(0 10px 12px rgba(64, 33, 16, 0.22));
+  animation: doudouIdle 2.6s ease-in-out infinite;
+  will-change: transform;
+}
+.doudou-buddy img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
 .map-runner.is-running .runner-emoji {
   animation: emojiRun 0.34s ease-in-out infinite;
+}
+.map-runner.is-running .doudou-buddy {
+  animation: doudouHopRun 0.34s ease-in-out infinite;
 }
 .map-runner.is-running .runner-glow {
   animation: emojiShadowRun 0.34s ease-in-out infinite;
@@ -1557,13 +1590,29 @@ button { font: inherit; }
 .map-runner.has-arrived .runner-emoji {
   animation: emojiArrive 0.24s ease-out;
 }
+.map-runner.has-arrived .doudou-buddy {
+  animation: doudouWave 0.48s ease-out;
+}
 @keyframes emojiIdle {
-  0%, 100% { transform: scaleX(var(--runner-direction)) translateY(0) rotate(-1deg); }
-  50% { transform: scaleX(var(--runner-direction)) translateY(-5px) rotate(1.5deg); }
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-5px) rotate(1.5deg); }
 }
 @keyframes emojiRun {
-  0%, 100% { transform: scaleX(var(--runner-direction)) translateY(0) rotate(-8deg) scale(1.02); }
-  50% { transform: scaleX(var(--runner-direction)) translateY(-10px) rotate(8deg) scale(1.08); }
+  0%, 100% { transform: translateY(0) rotate(-8deg) scale(1.02); }
+  50% { transform: translateY(-10px) rotate(8deg) scale(1.08); }
+}
+@keyframes doudouIdle {
+  0%, 100% { transform: translateY(1px) rotate(2deg) scale(0.98); }
+  50% { transform: translateY(-6px) rotate(-3deg) scale(1.03); }
+}
+@keyframes doudouHopRun {
+  0%, 100% { transform: translateY(-1px) rotate(7deg) scale(1.02); }
+  50% { transform: translateY(-12px) rotate(-8deg) scale(1.08); }
+}
+@keyframes doudouWave {
+  0% { transform: translateY(-10px) rotate(-12deg) scale(1.1); }
+  45% { transform: translateY(-3px) rotate(10deg) scale(1.04); }
+  100% { transform: translateY(0) rotate(0) scale(1); }
 }
 @keyframes emojiShadowIdle {
   0%, 100% { opacity: 0.78; transform: translateX(-50%) scale(1); }
@@ -1574,22 +1623,29 @@ button { font: inherit; }
   50% { opacity: 0.38; transform: translateX(-50%) scale(0.7); }
 }
 @keyframes emojiArrive {
-  0% { transform: scaleX(var(--runner-direction)) translateY(-8px) scale(1.12); }
-  100% { transform: scaleX(var(--runner-direction)) translateY(0) scale(1); }
+  0% { transform: translateY(-8px) scale(1.12); }
+  100% { transform: translateY(0) scale(1); }
 }
 @media (max-width: 900px) {
   .map-runner {
-    width: 64px;
-    height: 70px;
+    width: 102px;
+    height: 72px;
   }
-  .runner-emoji { font-size: 44px; }
+  .runner-emoji { font-size: 42px; }
+  .doudou-buddy {
+    width: 48px;
+    height: 48px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .runner-emoji,
+  .doudou-buddy,
   .runner-glow,
   .map-runner.is-running .runner-emoji,
+  .map-runner.is-running .doudou-buddy,
   .map-runner.is-running .runner-glow,
-  .map-runner.has-arrived .runner-emoji {
+  .map-runner.has-arrived .runner-emoji,
+  .map-runner.has-arrived .doudou-buddy {
     animation: none;
   }
 }
@@ -1769,5 +1825,34 @@ button { font: inherit; }
     margin-top: 4px;
     padding: 3px 7px;
     font-size: 11px;
+  }
+}
+
+/* 兜兜联动最终校准：覆盖旧版 runner 的收束样式，确保双角色比例和阴影稳定 */
+.map-runner {
+  width: 118px;
+  height: 82px;
+  align-items: flex-end;
+}
+.runner-glow {
+  z-index: 1;
+  left: 50%;
+  bottom: 6px;
+  width: 106px;
+  height: 24px;
+  border: 1px solid rgba(137, 75, 28, 0.18);
+  background: radial-gradient(ellipse at center, rgba(255, 206, 103, 0.62) 0%, rgba(169, 82, 35, 0.28) 52%, rgba(169, 82, 35, 0) 78%);
+  box-shadow: 0 0 20px rgba(211, 137, 49, 0.34);
+  filter: blur(1px);
+  transform: translateX(-50%);
+  opacity: 0.88;
+}
+.runner-duo { z-index: 3; }
+.runner-emoji { z-index: 4; }
+.doudou-buddy { z-index: 3; }
+@media (max-width: 900px) {
+  .map-runner {
+    width: 102px;
+    height: 72px;
   }
 }

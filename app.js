@@ -439,7 +439,10 @@ function buildMapRunner() {
   return `
     <div class="map-runner" id="mapRunner" style="left:${left}%;top:${top}%;" aria-hidden="true">
       <span class="runner-glow"></span>
-      <span class="runner-emoji" data-stand="🧍‍♀️" data-run="🏃‍♀️">🧍‍♀️</span>
+      <span class="runner-duo">
+        <span class="runner-emoji" data-stand="🧍‍♀️" data-run="🏃‍♀️">🧍‍♀️</span>
+        <span class="doudou-buddy"><img src="./assets/doudou_mascot.png" alt="抖音商城吉祥物兜兜" loading="lazy" /></span>
+      </span>
     </div>
   `;
 }
