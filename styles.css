@@ -1873,3 +1873,17 @@ button { font: inherit; }
   overflow: visible;
   text-overflow: clip;
 }
+
+/* 层级2穿搭关键词：允许完整换行，不再被右侧裁切 */
+#detailAdvice {
+  display: block;
+  max-width: 100%;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+.poster-grid article:has(#detailAdvice) {
+  min-width: 0;
+}
