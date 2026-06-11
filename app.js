@@ -245,17 +245,40 @@ const DESTINATIONS = [
   }
 ];
 
+/* ============================================================
+   底图坐标映射（已按底图实测重新校准）
+   底图：assets/china_autumn_3d_landmark_map.png，实际像素 2528 × 1696。
+   这是一张 3D 等轴测视角的中国地图，并非标准墨卡托 / 等距投影，
+   故改用「仿射变换」把经纬度映射到底图归一化比例 (0~1)，
+   可同时吸收横向缩放、纵向缩放与等轴测带来的切变 / 微旋转。
+   控制点（经纬度 → 底图像素，取自地标实测）：
+     哈尔滨·圣索菲亚教堂 (126.63, 45.77) → (2074,  258)
+     北京·天安门         (116.40, 39.90) → (1734,  624)
+     上海·东方明珠       (121.50, 31.24) → (1982,  938)
+     拉萨·布达拉宫       ( 91.12, 29.66) → ( 572,  940)
+     西安·兵马俑         (109.04, 34.27) → (1440,  872)
+     成都·熊猫           (104.07, 30.66) → (1166, 1028)
+     漠河·最北点         (122.34, 53.48) → (1836,  118)
+   最小二乘拟合得：
+     fx = ax·lon + bx·lat + cx   （fx ∈ 0~1，再 × width 得到 viewBox 横坐标）
+     fy = ay·lon + by·lat + cy   （fy ∈ 0~1，再 × height 得到 viewBox 纵坐标）
+   ============================================================ */
 const MAP_PROJECTION = {
   width: 971,
   height: 640,
-  lonMin: 73,
-  lonMax: 135,
-  latMin: 18,
-  latMax: 54,
-  mapLeft: 60,
-  mapRight: 930,
-  mapTop: 28,
-  mapBottom: 594
+  imgW: 2528,
+  imgH: 1696,
+  ax: 0.0184471, bx: -0.0034574, cx: -1.3433732,
+  ay: -0.0002980, by: -0.0230656, cy: 1.3092721
+};
+
+/* 极端角点修正：3D 等轴测底图在西北 / 东北角形变最剧烈，
+   仿射会把这些点外推到陆地之外。这里用底图实测比例 (0~1) 直接精确锚定，
+   保证「不在中国境内」的几个点位回到正确省份。 */
+const PIN_OVERRIDE = {
+  kanas:        [610 / 2528, 245 / 1696],  // 喀纳斯 · 新疆最北（阿勒泰）
+  changbaishan: [2050 / 2528, 510 / 1696], // 长白山 · 吉林东南（中朝边境）
+  mohe:         [1830 / 2528, 140 / 1696]  // 漠河 · 黑龙江最北
 };
 
 const chinaMap = document.getElementById('chinaMap');
@@ -281,16 +304,21 @@ let mapRunner;
 let runnerCurrent = { x: 486, y: 228 };
 let runnerMoving = false;
 
-function projectPoint(lon, lat) {
-  const {
-    lonMin, lonMax, latMin, latMax,
-    mapLeft, mapRight, mapTop, mapBottom
-  } = MAP_PROJECTION;
-  const xRatio = (lon - lonMin) / (lonMax - lonMin);
-  const yRatio = (latMax - lat) / (latMax - latMin);
-  const px = mapLeft + xRatio * (mapRight - mapLeft);
-  const py = mapTop + yRatio * (mapBottom - mapTop);
-  return [px, py];
+function projectPoint(lon, lat, id) {
+  const P = MAP_PROJECTION;
+  let fx, fy;
+  if (id && PIN_OVERRIDE[id]) {
+    // 极端角点：直接使用底图实测比例
+    [fx, fy] = PIN_OVERRIDE[id];
+  } else {
+    // 常规点：仿射变换 经纬度 → 归一化比例
+    fx = P.ax * lon + P.bx * lat + P.cx;
+    fy = P.ay * lon + P.by * lat + P.cy;
+  }
+  // 夹紧到 [0,1]，任何点位都不会落到底图之外
+  fx = Math.max(0, Math.min(1, fx));
+  fy = Math.max(0, Math.min(1, fy));
+  return [fx * P.width, fy * P.height];
 }
 
 /* ── TOP12 白名单：地域分布均匀、代表性最强的 12 个目的地 ──
@@ -331,7 +359,7 @@ const MANUAL_CARD_POS = {
 function layoutCards() {
   const pos = {};
   VISIBLE.forEach(d => {
-    const [px, py] = projectPoint(d.coords[0], d.coords[1]);
+    const [px, py] = projectPoint(d.coords[0], d.coords[1], d.id);
     const manual = MANUAL_CARD_POS[d.id] || { x: px, y: py };
     const c = { id: d.id, px, py, x: manual.x, y: manual.y, ax: manual.x, ay: manual.y };
     c.x = Math.max(CARD_W / 2, Math.min(VB_W - CARD_W / 2, c.x));
@@ -344,7 +372,7 @@ function layoutCards() {
 const CARD_POS = layoutCards();
 
 function buildPointMarkup(item) {
-  const [x, y] = projectPoint(item.coords[0], item.coords[1]);
+  const [x, y] = projectPoint(item.coords[0], item.coords[1], item.id);
   const left = (x / MAP_PROJECTION.width * 100).toFixed(2);
   const top = (y / MAP_PROJECTION.height * 100).toFixed(2);
   const card = CARD_POS[item.id];
@@ -445,7 +473,7 @@ function animateRunnerTo(item) {
       resolve();
       return;
     }
-    const [targetX, targetY] = projectPoint(item.coords[0], item.coords[1]);
+    const [targetX, targetY] = projectPoint(item.coords[0], item.coords[1], item.id);
     const startX = runnerCurrent.x;
     const startY = runnerCurrent.y;
     const dx = targetX - startX;

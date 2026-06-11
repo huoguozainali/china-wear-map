@@ -125,11 +125,12 @@ button { font: inherit; }
   pointer-events: none;
   flex-shrink: 0;
 }
-/* 顶部眉栏：左侧 kicker + 右侧站名，时尚杂志双栏版式 */
+/* 顶部眉栏：上 = AUTUMN EDIT 英文眉题，下 = 中国穿衣地图 站名（杂志式纵向版式） */
 .masthead-bar {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
   width: 100%;
   padding-bottom: 9px;
   border-bottom: 1px solid rgba(122, 74, 43, 0.32);
@@ -188,13 +189,17 @@ button { font: inherit; }
   height: 100%;
   overflow: hidden;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 }
 .map-shell {
   position: relative;
-  width: max(100vw, calc(100vh * 1.490566));
-  height: max(100vh, calc(100vw / 1.490566));
+  /* 整体「包含式」适配：把整张地图（含最南端从化、腾冲卡片）等比缩小，
+     完整收进桌面一屏 (100vh) 内并居中展示；0.94 为四周留白系数。
+     缩放只改变 .map-shell 的外部尺寸，内部底图、引线、卡片、点位
+     仍以同一坐标容器等比联动，相对位置保持不变。 */
+  width: min(calc(100vw * 0.94), calc(100vh * 0.94 * 1.490566));
+  height: min(calc(100vh * 0.94), calc(100vw * 0.94 / 1.490566));
   max-width: none;
   max-height: none;
   aspect-ratio: 2528 / 1696;
