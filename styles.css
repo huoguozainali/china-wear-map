@@ -147,17 +147,15 @@ button { font: inherit; }
 }
 .main-title {
   margin: 0;
-  max-width: min(68vw, 860px);
+  max-width: min(72vw, 720px);
   color: #050505;
   font-family: 'Noto Sans SC', 'Arial Narrow', 'Helvetica Neue Condensed', 'Impact', sans-serif;
-  font-size: clamp(34px, 4.7vw, 76px);
+  font-size: clamp(30px, 3.6vw, 56px);
   font-weight: 900;
   font-stretch: condensed;
-  letter-spacing: -0.13em;
-  line-height: 0.92;
+  letter-spacing: -0.08em;
+  line-height: 0.98;
   white-space: nowrap;
-  transform: scaleX(0.74);
-  transform-origin: left center;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
 }
@@ -754,9 +752,8 @@ button { font: inherit; }
   .map-name { font-size: 32px; }
   .main-title {
     max-width: calc(100vw - 32px);
-    font-size: clamp(30px, 7.8vw, 54px);
-    letter-spacing: -0.16em;
-    transform: scaleX(0.64);
+    font-size: clamp(24px, 5.8vw, 42px);
+    letter-spacing: -0.11em;
   }
   .map-shell { width: 100%; margin-left: 0; }
   .detail-card-shell { width: calc(100vw - 16px); }
@@ -771,7 +768,7 @@ button { font: inherit; }
   .leaf { display: none; }
 }
 @media (max-width: 640px) {
-  .main-title { font-size: 38px; transform: scaleX(0.58); letter-spacing: -0.18em; }
+  .main-title { font-size: clamp(22px, 5.6vw, 34px); letter-spacing: -0.12em; }
   .map-stage { min-height: 0; }
   .look-figure { height: 260px; }
   .scenic-frame { min-height: 280px; }
