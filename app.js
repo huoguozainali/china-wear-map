@@ -216,7 +216,7 @@ const DESTINATIONS = [
     advice: '极北保暖风 · 厚质叠穿', lookTitle: '极北保暖 LOOK',
     lookDesc: '厚羽绒 / 毛呢大衣 + 围巾叠穿，深色保暖，初雪白桦前格外有氛围。',
     tags: ['极北初雪', '保暖叠穿', '毛呢羽绒'],
-    coords: [122.37, 53.00],
+    coords: [122.50, 53.50],
     image: './assets/mohe.jpg', look: './assets/look_mohe.jpg'
   },
   {
@@ -245,7 +245,18 @@ const DESTINATIONS = [
   }
 ];
 
-const MAP_PROJECTION = { minx: 0.9075712110370514, miny: 0.05238381856676326, scale: 534.7697265801904, width: 971, height: 640, padding: 0 };
+const MAP_PROJECTION = {
+  width: 971,
+  height: 640,
+  lonMin: 73,
+  lonMax: 135,
+  latMin: 18,
+  latMax: 54,
+  mapLeft: 60,
+  mapRight: 930,
+  mapTop: 28,
+  mapBottom: 594
+};
 
 const chinaMap = document.getElementById('chinaMap');
 const detailScreen = document.getElementById('detailScreen');
@@ -271,11 +282,14 @@ let runnerCurrent = { x: 486, y: 228 };
 let runnerMoving = false;
 
 function projectPoint(lon, lat) {
-  const x = lon * Math.PI / 180;
-  const safeLat = Math.max(Math.min(lat, 85), -85);
-  const y = Math.log(Math.tan(Math.PI / 4 + (safeLat * Math.PI / 180) / 2));
-  const px = (x - MAP_PROJECTION.minx) * MAP_PROJECTION.scale + MAP_PROJECTION.padding;
-  const py = MAP_PROJECTION.height - ((y - MAP_PROJECTION.miny) * MAP_PROJECTION.scale + MAP_PROJECTION.padding);
+  const {
+    lonMin, lonMax, latMin, latMax,
+    mapLeft, mapRight, mapTop, mapBottom
+  } = MAP_PROJECTION;
+  const xRatio = (lon - lonMin) / (lonMax - lonMin);
+  const yRatio = (latMax - lat) / (latMax - latMin);
+  const px = mapLeft + xRatio * (mapRight - mapLeft);
+  const py = mapTop + yRatio * (mapBottom - mapTop);
   return [px, py];
 }
 
@@ -297,17 +311,8 @@ const CARD_W = 98;
 const CARD_H = 126;
 const VB_W = MAP_PROJECTION.width;
 const VB_H = MAP_PROJECTION.height;
-/* 地图陆地内容中心（中国轮廓质心，新底图含周边国家）—— 卡片初始向"远离中心"方向外推 */
-const CONTENT_CENTER = [484, 301];
-const OUT_OFFSET = 66;   // 点位→卡片初始外推距离：优先贴近目的地坐标，仅必要时外推
-const CARD_GAP = 18;      // 卡片之间的最小间距（保证呼吸感）
-const ITERATIONS = 240;   // 碰撞避让迭代次数
-
-/* ── 卡片悬浮布局：算法生成，不手写坐标 ──
-   1) 初始：把点位沿"远离地图内容中心"的方向外推 OUT_OFFSET，作为卡片中心；
-   2) 迭代式排斥：相互重叠的卡片沿连心线方向互相推开（留 CARD_GAP 间距），
-      并辅以一根弱弹簧把卡片拉回各自锚点，保证引线短、不乱跑；
-   3) 全程把卡片中心钳制在画布 [0,900]×[0,640] 内（可略微出血到边缘）。 */
+/* 地图陆地内容边界：用底图实际像素观测结果，将中国约 73°E～135°E、18°N～54°N
+   映射到 971×640 的地图工作区，保证目的地点位按真实经纬度落在底图对应位置。 */
 const MANUAL_CARD_POS = {
   kanas: { x: 238, y: 210 },
   mohe: { x: 715, y: 74 },
