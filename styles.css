@@ -150,7 +150,7 @@ button { font: inherit; }
 .map-name {
   margin: 0;
   color: var(--accent);
-  font-size: clamp(15px, 1.18vw, 18px);
+  font-size: clamp(24px, 2.45vw, 38px);
   font-weight: 800;
   letter-spacing: 0.14em;
   line-height: 1;
@@ -161,7 +161,7 @@ button { font: inherit; }
   max-width: min(72vw, 720px);
   color: #4A3322;
   font-family: 'Noto Sans SC', 'Arial Narrow', 'Helvetica Neue Condensed', 'Impact', sans-serif;
-  font-size: clamp(30px, 3.6vw, 56px);
+  font-size: clamp(32px, 3.25vw, 50px);
   font-weight: 900;
   font-stretch: condensed;
   letter-spacing: -0.02em;
