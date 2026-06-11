@@ -606,6 +606,12 @@ button { font: inherit; }
   line-height: 1.7;
   font-size: 16px;
 }
+#detailAdvice {
+  display: block;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
 .detail-btn,
 .card-more-btn,
 .back-btn {
