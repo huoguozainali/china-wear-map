@@ -153,7 +153,7 @@ button { font: inherit; }
   font-size: clamp(30px, 3.6vw, 56px);
   font-weight: 900;
   font-stretch: condensed;
-  letter-spacing: -0.08em;
+  letter-spacing: -0.02em;
   line-height: 0.98;
   white-space: nowrap;
   text-rendering: geometricPrecision;
@@ -753,7 +753,7 @@ button { font: inherit; }
   .main-title {
     max-width: calc(100vw - 32px);
     font-size: clamp(24px, 5.8vw, 42px);
-    letter-spacing: -0.11em;
+    letter-spacing: -0.04em;
   }
   .map-shell { width: 100%; margin-left: 0; }
   .detail-card-shell { width: calc(100vw - 16px); }
@@ -768,7 +768,7 @@ button { font: inherit; }
   .leaf { display: none; }
 }
 @media (max-width: 640px) {
-  .main-title { font-size: clamp(22px, 5.6vw, 34px); letter-spacing: -0.12em; }
+  .main-title { font-size: clamp(22px, 5.6vw, 34px); letter-spacing: -0.05em; }
   .map-stage { min-height: 0; }
   .look-figure { height: 260px; }
   .scenic-frame { min-height: 280px; }
