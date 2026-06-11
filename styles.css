@@ -1521,9 +1521,9 @@ button { font: inherit; }
 
 /* final runner duo: native emoji girl + Douyin Mall mascot, moving as a playful pair */
 .map-runner {
-  width: 118px;
-  height: 82px;
-  z-index: 7;
+  width: 146px;
+  height: 102px;
+  z-index: 9999;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -1579,8 +1579,8 @@ button { font: inherit; }
   position: relative;
   z-index: 2;
   display: block;
-  width: clamp(64px, 7.4vw, 84px);
-  height: clamp(64px, 7.4vw, 84px);
+  width: clamp(80px, 9.25vw, 105px);
+  height: clamp(80px, 9.25vw, 105px);
   margin-left: -8px;
   margin-bottom: 2px;
   transform-origin: 50% 86%;
@@ -1644,13 +1644,14 @@ button { font: inherit; }
 }
 @media (max-width: 900px) {
   .map-runner {
-    width: 150px;
-    height: 76px;
+    width: 188px;
+    height: 96px;
+    z-index: 9999;
   }
   .runner-emoji { font-size: 44px; }
   .doudou-buddy {
-    width: 70px;
-    height: 70px;
+    width: 88px;
+    height: 88px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

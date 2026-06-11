@@ -12,7 +12,7 @@ const DESTINATIONS = [
     advice: '山野机能风 · 驼棕系层搭', lookTitle: '山野机能驼棕',
     lookDesc: '抓绒 + 壳层 + 工装裤 + 靴子，驼棕大地色叠搭，远景近景都立得住。',
     tags: ['北疆金色', '山野机能', '驼棕层搭'],
-    coords: [87.0, 48.7],
+    coords: [87.0, 48.1],
     image: './assets/kanas.jpg', look: './assets/look_kanas.jpg'
   },
   {
@@ -216,7 +216,7 @@ const DESTINATIONS = [
     advice: '极北保暖风 · 厚质叠穿', lookTitle: '极北保暖',
     lookDesc: '厚羽绒 / 毛呢大衣 + 围巾叠穿，深色保暖，初雪白桦前格外有氛围。',
     tags: ['极北初雪', '保暖叠穿', '毛呢羽绒'],
-    coords: [122.50, 53.50],
+    coords: [122.50, 52.55],
     image: './assets/mohe.jpg', look: './assets/look_mohe.jpg'
   },
   {
@@ -327,6 +327,7 @@ const VB_W = MAP_PROJECTION.width;
 const VB_H = MAP_PROJECTION.height;
 /* 地图陆地内容边界：用底图实际像素观测结果，将中国约 73°E～135°E、18°N～54°N
    映射到 971×640 的地图工作区，保证目的地点位按真实经纬度落在底图对应位置。 */
+const CARD_OFFSET_SCALE = 1.12;
 const MANUAL_CARD_POS = {
   kanas: { x: 270, y: 116 },
   mohe: { x: 717, y: 69 },
@@ -347,7 +348,9 @@ function layoutCards() {
   VISIBLE.forEach(d => {
     const [px, py] = projectPoint(d.coords[0], d.coords[1], d.id);
     const manual = MANUAL_CARD_POS[d.id] || { x: px, y: py };
-    const c = { id: d.id, px, py, x: manual.x, y: manual.y, ax: manual.x, ay: manual.y };
+    const offsetX = (manual.x - px) * CARD_OFFSET_SCALE;
+    const offsetY = (manual.y - py) * CARD_OFFSET_SCALE;
+    const c = { id: d.id, px, py, x: px + offsetX, y: py + offsetY, ax: manual.x, ay: manual.y };
     c.x = Math.max(CARD_W / 2, Math.min(VB_W - CARD_W / 2, c.x));
     c.y = Math.max(CARD_H / 2, Math.min(VB_H - CARD_H / 2, c.y));
     pos[c.id] = c;
@@ -520,12 +523,17 @@ function renderMap() {
     <div class="map-shell">
       <img class="map-base" src="./assets/china_autumn_3d_landmark_map.png" alt="秋日3D中国地标地图" />
       ${leaders}
-      ${buildMapRunner()}
       <div class="map-cards-html">${cards}</div>
       <div class="map-pins">${pointsMarkup}</div>
     </div>
   `;
 
+  // 兜兜与小女孩挂在独立的顶层图层（脱离地图的 stacking context），
+  // 保证全屏跑动时始终位于最上层，不被标题、卡片、任何组件遮挡。
+  const runnerLayer = document.getElementById('runnerLayer');
+  if (runnerLayer) {
+    runnerLayer.innerHTML = buildMapRunner();
+  }
   mapRunner = document.getElementById('mapRunner');
 
   chinaMap.querySelectorAll('.mini-card').forEach(card => {
