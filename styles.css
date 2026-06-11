@@ -59,6 +59,7 @@ button { font: inherit; }
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  isolation: isolate;
 }
 /* 纸质颗粒：让底色像高级杂志的哑光纸 */
 .landing-page::before {
@@ -206,6 +207,19 @@ button { font: inherit; }
   overflow: visible;
   -webkit-mask-image: none;
   mask-image: none;
+}
+/* 顶层角色图层：与 .map-shell 完全等尺寸、同样居中叠放，但脱离地图的 stacking context，
+   z-index 设为页面内最高层，确保兜兜与小女孩全屏跑动时不被标题、卡片、任何组件遮挡。 */
+.runner-layer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(calc(100vw * 0.94), calc(100vh * 0.94 * 1.490566));
+  height: min(calc(100vh * 0.94), calc(100vw * 0.94 / 1.490566));
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  overflow: visible;
+  z-index: 9999;
 }
 /* 地图底图、SVG 引线、HTML 卡片与点位都挂在 .map-shell 内，随同一个坐标容器整体等比放大。 */
 .map-base {
@@ -605,7 +619,7 @@ button { font: inherit; }
 }
 .detail-actions {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
   margin-top: 20px;
 }
@@ -618,10 +632,6 @@ button { font: inherit; }
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-.detail-actions .detail-btn-photo-test {
-  font-size: clamp(12px, 1.65vw, 15px);
-  letter-spacing: -0.04em;
 }
 .card-more-btn,
 .detail-btn {
@@ -828,6 +838,7 @@ button { font: inherit; }
     letter-spacing: -0.04em;
   }
   .map-shell { width: 100%; margin-left: 0; }
+  .runner-layer { width: 100%; }
   .detail-card-shell { width: calc(100vw - 16px); }
   .travel-card { padding: 16px; border-radius: 24px; }
   .travel-card-head h2 {
@@ -1145,7 +1156,7 @@ button { font: inherit; }
   --runner-direction: 1;
   position: absolute;
   z-index: 7;
-  width: clamp(62px, 7.4vw, 88px);
+  width: clamp(118px, 13vw, 156px);
   height: clamp(86px, 10vw, 124px);
   pointer-events: none;
   transform: translate(-50%, -88%) scaleX(var(--runner-direction));
@@ -1568,10 +1579,10 @@ button { font: inherit; }
   position: relative;
   z-index: 2;
   display: block;
-  width: clamp(46px, 5.2vw, 58px);
-  height: clamp(46px, 5.2vw, 58px);
-  margin-left: -6px;
-  margin-bottom: 4px;
+  width: clamp(64px, 7.4vw, 84px);
+  height: clamp(64px, 7.4vw, 84px);
+  margin-left: -8px;
+  margin-bottom: 2px;
   transform-origin: 50% 86%;
   filter: drop-shadow(0 10px 12px rgba(64, 33, 16, 0.22));
   animation: doudouIdle 2.6s ease-in-out infinite;
@@ -1633,13 +1644,13 @@ button { font: inherit; }
 }
 @media (max-width: 900px) {
   .map-runner {
-    width: 102px;
-    height: 72px;
+    width: 150px;
+    height: 76px;
   }
-  .runner-emoji { font-size: 42px; }
+  .runner-emoji { font-size: 44px; }
   .doudou-buddy {
-    width: 48px;
-    height: 48px;
+    width: 70px;
+    height: 70px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
