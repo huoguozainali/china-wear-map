@@ -52,10 +52,9 @@ button { font: inherit; }
 
 .landing-page {
   position: relative;
-  height: 100vh;
-  min-height: 600px;
-  padding: 12px 18px 10px;
-  overflow: hidden;
+  min-height: 100vh;
+  padding: 14px;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -78,12 +77,8 @@ button { font: inherit; }
   inset: 14px;
   z-index: 5;
   pointer-events: none;
-  border: 1px solid rgba(122, 74, 43, 0.18);
+  border: 1px solid rgba(122, 74, 43, 0.15);
   border-radius: 24px;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 250, 244, 0.40),
-    inset 0 0 40px rgba(84, 46, 22, 0.06),
-    0 22px 60px rgba(84, 46, 22, 0.06);
 }
 .page-glow {
   position: fixed;
@@ -117,36 +112,47 @@ button { font: inherit; }
 }
 
 .hero-head {
-  position: absolute;
-  top: 22px;
-  left: 34px;
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
   z-index: 6;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0;
-  text-align: left;
+  padding: 4px 20px 0;
   pointer-events: none;
-  max-width: 720px;
+  flex-shrink: 0;
+}
+/* 顶部眉栏：左侧 kicker + 右侧站名，时尚杂志双栏版式 */
+.masthead-bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 9px;
+  border-bottom: 1px solid rgba(122, 74, 43, 0.32);
+  margin-bottom: 10px;
 }
 .masthead-kicker {
-  margin: 0 0 10px;
+  margin: 0;
   display: block;
   color: var(--accent-deep);
   font-size: clamp(11.5px, 0.92vw, 14px);
   font-weight: 800;
   letter-spacing: 0.34em;
   text-transform: uppercase;
-  padding-bottom: 9px;
-  border-bottom: 1px solid rgba(122, 74, 43, 0.32);
+  padding: 0;
+  border-bottom: none;
 }
 .map-name {
-  margin: 0 0 6px;
+  margin: 0;
   color: var(--accent);
-  font-size: clamp(24px, 2.3vw, 36px);
+  font-size: clamp(13px, 1.0vw, 15px);
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   line-height: 1;
+  text-align: right;
 }
 .main-title {
   margin: 0;
@@ -163,7 +169,7 @@ button { font: inherit; }
   -webkit-font-smoothing: antialiased;
 }
 .masthead-sub {
-  margin: 12px 0 0;
+  margin: 6px 0 0;
   color: var(--muted);
   font-size: clamp(11.5px, 0.92vw, 14px);
   font-weight: 700;
@@ -173,34 +179,31 @@ button { font: inherit; }
 .map-stage {
   position: relative;
   flex: 1 1 auto;
-  min-height: 420px;
-  margin-top: -8px;
-  overflow: hidden;
+  width: 100%;
+  min-height: 0;
+  margin: 0;
+  overflow: visible;
   z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 .china-map {
-  position: absolute;
-  inset: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
 }
 .map-shell {
-  position: absolute;
-  inset: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  overflow: visible;
   -webkit-mask-image: none;
   mask-image: none;
 }
+/* 等比例完整显示，不裁剪不拉伸，图片原始比例 2528×1696 */
 .map-base {
   display: block;
-  position: absolute;
-  inset: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
+  height: auto;
   mix-blend-mode: normal;
   filter: saturate(1.05) contrast(1.02);
 }
@@ -790,7 +793,7 @@ button { font: inherit; }
   .scenic-frame { min-height: 340px; }
 }
 @media (max-width: 900px) {
-  .landing-page { padding: 24px 16px 10px; }
+  .landing-page { padding: 14px; }
   .hero-head {
     left: 16px;
     right: 16px;
