@@ -1581,7 +1581,7 @@ button { font: inherit; }
   display: block;
   width: clamp(80px, 9.25vw, 105px);
   height: clamp(80px, 9.25vw, 105px);
-  margin-left: -8px;
+  margin-left: -22px;
   margin-bottom: 2px;
   transform-origin: 50% 86%;
   filter: drop-shadow(0 10px 12px rgba(64, 33, 16, 0.22));
