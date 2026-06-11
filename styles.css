@@ -800,16 +800,22 @@ button { font: inherit; }
   align-items: flex-start;
 }
 .mini-temp {
-  padding: 4px 10px;
-  border-radius: 10px;
-  font-size: 10.5px;
-  font-weight: 900;
-  color: #fffaf4;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: clamp(12px, 1.28vw, 15px);
+  line-height: 1;
+  font-weight: 950;
+  color: #2b1208;
   white-space: nowrap;
-  box-shadow: 0 3px 8px rgba(60,30,14,0.3);
-  background: rgba(28, 18, 12, 0.58);
-  backdrop-filter: blur(4px);
-  letter-spacing: 0.01em;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 8px 18px rgba(42, 18, 8, 0.34),
+    0 0 0 2px rgba(255, 196, 82, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  background: linear-gradient(135deg, rgba(255, 244, 205, 0.98), rgba(255, 173, 67, 0.94));
+  backdrop-filter: blur(8px) saturate(1.35);
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.58);
 }
 /* 秋景小图角标 */
 .mini-scenic {
