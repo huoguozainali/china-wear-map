@@ -267,8 +267,10 @@ const MAP_PROJECTION = {
   height: 640,
   imgW: 2528,
   imgH: 1696,
-  ax: 0.01409652, bx: -0.00208856, cx: -0.88433833,
-  ay: -0.00065588, by: -0.02386886, cy: 1.41786938
+  // 2026-06 重新校准：以底图陆地轮廓极值点(最西/最北漠河/最东抚远/海南南端/雷州/阿尔泰北缘+北京)
+  // 为控制点，numpy 最小二乘拟合仿射矩阵，确保经纬度按真实地理位置落到底图。
+  ax: 0.01373278, bx: -0.00093413, cx: -0.89351129,
+  ay: 0.00064996, by: -0.02576875, cy: 1.33243050
 };
 
 const chinaMap = document.getElementById('chinaMap');
@@ -326,18 +328,18 @@ const VB_H = MAP_PROJECTION.height;
 /* 地图陆地内容边界：用底图实际像素观测结果，将中国约 73°E～135°E、18°N～54°N
    映射到 971×640 的地图工作区，保证目的地点位按真实经纬度落在底图对应位置。 */
 const MANUAL_CARD_POS = {
-  kanas: { x: 238, y: 210 },
-  mohe: { x: 715, y: 74 },
-  changbaishan: { x: 762, y: 206 },
-  xiangshan: { x: 603, y: 242 },
-  xian: { x: 520, y: 326 },
-  jiuzhaigou: { x: 382, y: 326 },
-  linzhi: { x: 330, y: 438 },
-  daocheng: { x: 482, y: 494 },
-  tengchong: { x: 328, y: 572 },
-  zhangjiajie: { x: 568, y: 458 },
-  hangzhou: { x: 702, y: 430 },
-  conghua: { x: 674, y: 556 }
+  kanas: { x: 270, y: 116 },
+  mohe: { x: 717, y: 69 },
+  changbaishan: { x: 802, y: 213 },
+  xiangshan: { x: 674, y: 242 },
+  xian: { x: 567, y: 306 },
+  jiuzhaigou: { x: 460, y: 320 },
+  linzhi: { x: 351, y: 375 },
+  daocheng: { x: 464, y: 454 },
+  tengchong: { x: 359, y: 509 },
+  zhangjiajie: { x: 572, y: 441 },
+  hangzhou: { x: 707, y: 388 },
+  conghua: { x: 679, y: 524 }
 };
 
 function layoutCards() {

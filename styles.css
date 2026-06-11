@@ -1874,6 +1874,18 @@ button { font: inherit; }
   text-overflow: clip;
 }
 
+/* 温度角标兜底：始终完整展示、不被相邻卡片/底图边缘裁切或遮挡 */
+.mini-card-pos,
+.mini-card-fo,
+.mini-card,
+.mini-card .mini-chips,
+.mini-card .mini-temp { overflow: visible !important; }
+/* 角标层级高于所有卡片正文，杜绝相邻卡片压住温度数字 */
+.mini-card .mini-chips { z-index: 30; }
+/* 悬停/激活卡片整体抬升，温度角标随之置顶 */
+.mini-card-pos:hover,
+.mini-card-pos.is-active { z-index: 40; }
+
 /* 层级2穿搭关键词：允许完整换行，不再被右侧裁切 */
 #detailAdvice {
   display: block;
