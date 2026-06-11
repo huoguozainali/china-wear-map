@@ -1008,7 +1008,7 @@ button { font: inherit; }
   text-shadow: 0 2px 8px rgba(30,14,4,0.72);
 }
 .mini-caption .mini-name {
-  font-size: 9.5px;
+  font-size: 11px;
   font-style: normal;
   font-weight: 700;
   color: rgba(255,244,232,0.88);
