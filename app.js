@@ -413,12 +413,12 @@ function buildMiniCard(item) {
   return `
     <div class="mini-card-pos" style="left:${left}%;top:${top}%;width:${w}%;height:${h}%;">
       <div class="mini-card wx-on-${item.weather}" data-open-second="${item.id}">
+        <span class="mini-chips">
+          <span class="mini-temp">🌡️${item.temp}</span>
+        </span>
         <div class="mini-photo">
           <img class="mini-look-img" src="${item.look}" alt="${item.name} LOOK" loading="lazy" />
           ${buildWeatherLayer(item.weather)}
-          <span class="mini-chips">
-            <span class="mini-temp">🌡️${item.temp}</span>
-          </span>
           <span class="mini-scenic"><img src="${item.image}" alt="${item.name} 秋景" loading="lazy" /></span>
           <span class="mini-caption">
             <i class="mini-vibe">${item.vibe}</i>
