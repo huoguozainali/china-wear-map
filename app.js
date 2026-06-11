@@ -601,7 +601,7 @@ function fillSecondLayer(item) {
   detailRegion.textContent = '';
   detailRegion.classList.add('hidden');
   detailTitle.textContent = item.shortAddress;
-  detailTime.textContent = `${item.window} · 🌡️${item.temp}`;
+  detailTime.textContent = `🌡️${item.temp}`;
   detailSummary.textContent = item.summary;
   detailTags.innerHTML = item.tags.map(tag => `<span>${tag}</span>`).join('');
   detailAddress.textContent = item.address;
