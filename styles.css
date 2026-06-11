@@ -148,7 +148,7 @@ button { font: inherit; }
 .main-title {
   margin: 0;
   max-width: min(72vw, 720px);
-  color: #050505;
+  color: #4A3322;
   font-family: 'Noto Sans SC', 'Arial Narrow', 'Helvetica Neue Condensed', 'Impact', sans-serif;
   font-size: clamp(30px, 3.6vw, 56px);
   font-weight: 900;
