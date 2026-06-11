@@ -400,7 +400,6 @@ function buildMiniCard(item) {
           <img class="mini-look-img" src="${item.look}" alt="${item.name} LOOK" loading="lazy" />
           ${buildWeatherLayer(item.weather)}
           <span class="mini-chips">
-            <span class="mini-month">${item.monthChip}</span>
             <span class="mini-temp">🌡️${item.temp}</span>
           </span>
           <span class="mini-scenic"><img src="${item.image}" alt="${item.name} 秋景" loading="lazy" /></span>

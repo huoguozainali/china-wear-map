@@ -788,7 +788,7 @@ button { font: inherit; }
     linear-gradient(125deg, rgba(255,255,255,0.18), transparent 32%);
 }
 
-/* 月份 + 气温角标 */
+/* 气温角标 */
 .mini-chips {
   position: absolute;
   top: 8px;
@@ -799,7 +799,6 @@ button { font: inherit; }
   gap: 5px;
   align-items: flex-start;
 }
-.mini-month,
 .mini-temp {
   padding: 4px 10px;
   border-radius: 10px;
@@ -808,9 +807,6 @@ button { font: inherit; }
   color: #fffaf4;
   white-space: nowrap;
   box-shadow: 0 3px 8px rgba(60,30,14,0.3);
-}
-.mini-month { background: rgba(142, 74, 45, 0.94); }
-.mini-temp {
   background: rgba(28, 18, 12, 0.58);
   backdrop-filter: blur(4px);
   letter-spacing: 0.01em;
