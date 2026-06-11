@@ -441,7 +441,7 @@ function buildMapRunner() {
       <span class="runner-glow"></span>
       <span class="runner-duo">
         <span class="runner-emoji" data-stand="🧍‍♀️" data-run="🏃‍♀️">🧍‍♀️</span>
-        <span class="doudou-buddy"><img src="./assets/doudou_mascot.png" alt="抖音商城吉祥物兜兜" loading="lazy" /></span>
+        <span class="doudou-buddy"><img src="./assets/doudou.png" alt="抖音商城吉祥物兜兜" loading="lazy" /></span>
       </span>
     </div>
   `;
