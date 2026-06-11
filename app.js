@@ -329,7 +329,7 @@ const VB_H = MAP_PROJECTION.height;
    映射到 971×640 的地图工作区，保证目的地点位按真实经纬度落在底图对应位置。 */
 const CARD_OFFSET_SCALE = 1.12;
 const MANUAL_CARD_POS = {
-  kanas: { x: 252, y: 131 },
+  kanas: { x: 272, y: 151 },
   mohe: { x: 717, y: 69 },
   changbaishan: { x: 802, y: 213 },
   xiangshan: { x: 674, y: 242 },
