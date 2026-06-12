@@ -73,7 +73,39 @@ const DESTINATIONS = [
     lookDesc: '风衣 + 西装 + 酒红针织叠穿 + 乐福鞋，城市感与秋意可以同时成立。',
     tags: ['红枫配色', '都市通勤', '风衣叠穿'],
     coords: [116.19, 39.99],
-    image: './assets/xiangshan.jpg', look: './assets/look_xiangshan.jpg'
+    image: './assets/xiangshan.jpg', look: './assets/look_xiangshan.jpg',
+    looks: [
+      {
+        image: './assets/look_xiangshan.jpg',
+        lookTitle: '都市通勤风衣',
+        advice: '都市赏秋风 · 通勤街拍',
+        lookDesc: '卡其风衣外搭西装、内叠酒红针织，下配利落乐福鞋收尾。城市感与秋意在一身上同时成立，从地铁口到红叶道无缝切换。'
+      },
+      {
+        image: './assets/look_xiangshan_2.jpg',
+        lookTitle: '新中式红韵',
+        advice: '新中式秋游风 · 红韵东方',
+        lookDesc: '酒红提花立领盘扣上衣配米白马面裙，棕色乐福鞋与复古手包点睛。东方红呼应满山红叶，走在古亭石道间，气场与故事感同时拉满。'
+      },
+      {
+        image: './assets/look_xiangshan_3.jpg',
+        lookTitle: '美拉德焦糖',
+        advice: '美拉德暖调风 · 焦糖层搭',
+        lookDesc: '焦糖高领针织叠巧克力色长大衣，大地色阔腿裤束进棕色长靴，贝雷帽收尾。一身暖调层层递进，逆光里整个人都在发光。'
+      },
+      {
+        image: './assets/look_xiangshan_4.jpg',
+        lookTitle: '法式贝雷文艺',
+        advice: '法式松弛风 · 贝雷文艺',
+        lookDesc: '米白麻花针织开衫配焦糖格纹百褶裙，黑色贝雷帽与乐福鞋压住法式松弛。红枫树下的长椅一坐，慵懒又高级，随手就是封面。'
+      },
+      {
+        image: './assets/look_xiangshan_5.jpg',
+        lookTitle: '学院复古格纹',
+        advice: '学院复古风 · 格纹少女',
+        lookDesc: '酒红格纹西装外套叠米白针织背心，配同色短裙、过膝袜与乐福鞋。preppy 学院气息撞上红叶石阶，鲜活又有少女感，出片率极高。'
+      }
+    ]
   },
   {
     id: 'qixiashan', name: '栖霞山', region: '华东 · 南京', shortAddress: '南京·栖霞山',
@@ -292,6 +324,11 @@ const detailAdvice = document.getElementById('detailAdvice');
 const commerceProducts = document.getElementById('commerceProducts');
 const backBtn = document.getElementById('backBtn');
 const detailBackdrop = document.querySelector('.detail-backdrop');
+const lookPhotoWrap = document.getElementById('lookPhotoWrap');
+const lookReel = document.getElementById('lookReel');
+const lookReelTrack = document.getElementById('lookReelTrack');
+const lookReelDots = document.getElementById('lookReelDots');
+const lookReelBtn = document.getElementById('lookReelBtn');
 let mapRunner;
 let runnerCurrent = { x: 486, y: 228 };
 let runnerMoving = false;
@@ -619,15 +656,191 @@ function buildProducts(itemId) {
   `).join('');
 }
 
+/* ============================================================
+   变装转盘 · LOOK Reel 控制器
+   - 竖向滚轮轮播（slot-machine 风格），匀速滚动有惯性感
+   - 点击「截停」后惯性减速、定格到随机一套，并轻微弹跳
+   - 定格后联动右侧：OOTD 风格名 / 穿搭描述 / 穿搭关键词
+   ============================================================ */
+const LookReel = (() => {
+  let looks = [];
+  let n = 0;
+  let slideH = 0;
+  let setH = 0;
+  let pos = 0;            // 当前滚动偏移（px）
+  let velocity = 0;       // 每帧位移（px）
+  let raf = null;
+  let state = 'idle';     // idle | spinning | stopping | landed
+  let landedIndex = 0;
+
+  function renderDots(active) {
+    lookReelDots.innerHTML = looks
+      .map((_, i) => `<i class="${i === active ? 'active' : ''}"></i>`)
+      .join('');
+  }
+
+  function applyCopy(index) {
+    const l = looks[index];
+    lookTitle.textContent = l.lookTitle;
+    lookDesc.textContent = l.lookDesc;
+    detailAdvice.textContent = l.advice;
+    renderDots(index);
+  }
+
+  function cancelRaf() {
+    if (raf) { cancelAnimationFrame(raf); raf = null; }
+  }
+
+  function measure() {
+    slideH = lookPhotoWrap.clientHeight || 360;
+    setH = n * slideH;
+    Array.from(lookReelTrack.children).forEach(slide => {
+      slide.style.height = slideH + 'px';
+    });
+    lookReelTrack.style.height = (2 * setH) + 'px';
+  }
+
+  function setup(item) {
+    teardown(false);
+    looks = item.looks;
+    n = looks.length;
+    landedIndex = 0;
+    // 渲染两组幻灯片，保证无缝循环
+    lookReelTrack.innerHTML = looks
+      .concat(looks)
+      .map(l => `<div class="look-slide"><img src="${l.image}" alt="${l.lookTitle}" loading="lazy" /></div>`)
+      .join('');
+    lookReelTrack.classList.remove('is-bounce');
+    lookReel.classList.remove('is-landed');
+    lookReelTrack.style.removeProperty('--reel-y');
+    lookReelTrack.style.transform = 'translateY(0)';
+    renderDots(0);
+    applyCopy(0);
+    lookImage.style.display = 'none';
+    lookReel.hidden = false;
+    lookReelBtn.textContent = '🎰 截停定格';
+    state = 'idle';
+  }
+
+  function spinFrame() {
+    pos += velocity;
+    if (pos >= setH) pos -= setH;
+    lookReelTrack.style.transform = `translateY(${-pos}px)`;
+    raf = requestAnimationFrame(spinFrame);
+  }
+
+  function startSpin() {
+    if (lookReel.hidden) return;
+    measure();
+    cancelRaf();
+    lookReel.classList.remove('is-landed');
+    lookReelTrack.classList.remove('is-bounce');
+    lookReelTrack.style.transform = `translateY(${-pos}px)`;
+    velocity = Math.max(18, slideH * 0.085);  // 流畅且有速度感
+    state = 'spinning';
+    lookReelBtn.textContent = '🎰 截停定格';
+    raf = requestAnimationFrame(spinFrame);
+  }
+
+  function stopSpin() {
+    if (state !== 'spinning') return;
+    cancelRaf();
+    state = 'stopping';
+    const baseIndex = Math.floor(pos / slideH);
+    const extra = 3 + Math.floor(Math.random() * n);   // 再多滚几套，制造惯性
+    const targetIndexAbs = baseIndex + extra;
+    const startPos = pos;
+    const dist = targetIndexAbs * slideH - startPos;
+    const duration = 1150;
+    const t0 = performance.now();
+    const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+    function decel(now) {
+      const t = Math.min(1, (now - t0) / duration);
+      pos = startPos + dist * easeOutCubic(t);
+      const drawPos = ((pos % setH) + setH) % setH;
+      lookReelTrack.style.transform = `translateY(${-drawPos}px)`;
+      if (t < 1) {
+        raf = requestAnimationFrame(decel);
+      } else {
+        land(targetIndexAbs);
+      }
+    }
+    raf = requestAnimationFrame(decel);
+  }
+
+  function land(targetIndexAbs) {
+    cancelRaf();
+    landedIndex = ((targetIndexAbs % n) + n) % n;
+    const finalDraw = landedIndex * slideH;   // 归一到第一组
+    pos = finalDraw;
+    lookReelTrack.style.setProperty('--reel-y', `${-finalDraw}px`);
+    lookReelTrack.style.transform = 'translateY(var(--reel-y))';
+    // 触发定格弹跳
+    lookReelTrack.classList.remove('is-bounce');
+    void lookReelTrack.offsetWidth;
+    lookReelTrack.classList.add('is-bounce');
+    lookReel.classList.add('is-landed');
+    applyCopy(landedIndex);
+    state = 'landed';
+    lookReelBtn.textContent = '🔄 再转一套';
+  }
+
+  function onBtn() {
+    if (state === 'spinning') {
+      stopSpin();
+    } else {
+      startSpin();
+    }
+  }
+
+  function relayout() {
+    if (lookReel.hidden || !n) return;
+    measure();
+    if (state === 'landed') {
+      const finalDraw = landedIndex * slideH;
+      pos = finalDraw;
+      lookReelTrack.style.setProperty('--reel-y', `${-finalDraw}px`);
+      lookReelTrack.style.transform = 'translateY(var(--reel-y))';
+    } else if (state !== 'spinning') {
+      lookReelTrack.style.transform = `translateY(${-pos}px)`;
+    }
+  }
+
+  function teardown(hide = true) {
+    cancelRaf();
+    state = 'idle';
+    pos = 0;
+    velocity = 0;
+    lookReelTrack.classList.remove('is-bounce');
+    lookReel.classList.remove('is-landed');
+    if (hide) {
+      lookReel.hidden = true;
+      lookImage.style.display = '';
+    }
+  }
+
+  lookReelBtn.addEventListener('click', onBtn);
+  window.addEventListener('resize', relayout);
+
+  return { setup, startSpin, stopSpin, relayout, teardown };
+})();
+
 function fillSecondLayer(item) {
   scenicImage.style.backgroundImage =
     `linear-gradient(180deg, rgba(26,18,12,0.04), rgba(26,18,12,0.34)), url('${item.image}')`;
   sceneBadge.textContent = item.shortAddress;
   sceneCaption.textContent = item.scene;
-  lookImage.src = item.look;
-  lookImage.alt = `${item.name} ${item.lookTitle}`;
-  lookTitle.textContent = item.lookTitle;
-  lookDesc.textContent = item.lookDesc;
+  const hasReel = Array.isArray(item.looks) && item.looks.length > 1;
+  if (hasReel) {
+    // 多套 LOOK：启用变装转盘，文案由转盘联动（默认先展示第一套）
+    LookReel.setup(item);
+  } else {
+    LookReel.teardown(true);
+    lookImage.src = item.look;
+    lookImage.alt = `${item.name} ${item.lookTitle}`;
+    lookTitle.textContent = item.lookTitle;
+    lookDesc.textContent = item.lookDesc;
+  }
   detailRegion.textContent = '';
   detailRegion.classList.add('hidden');
   detailTitle.textContent = item.shortAddress;
@@ -636,7 +849,9 @@ function fillSecondLayer(item) {
   detailTags.innerHTML = item.tags.map(tag => `<span>${tag}</span>`).join('');
   detailAddress.textContent = item.address;
   detailWindow.textContent = item.window;
-  detailAdvice.textContent = item.advice;
+  if (!hasReel) {
+    detailAdvice.textContent = item.advice;
+  }
 
   const hasProducts = buildProducts(item.id).trim() !== '';
   commerceProducts.classList.toggle('hidden', !hasProducts);
@@ -650,9 +865,14 @@ function openDetail(id) {
   detailScreen.classList.remove('hidden');
   detailScreen.scrollTop = 0;
   document.body.style.overflow = 'hidden';
+  // 详情可见后再测量并自动起转（隐藏态无法获取正确高度）
+  if (Array.isArray(item.looks) && item.looks.length > 1) {
+    requestAnimationFrame(() => requestAnimationFrame(() => LookReel.startSpin()));
+  }
 }
 
 function closeDetail() {
+  LookReel.teardown(true);
   detailScreen.classList.add('hidden');
   document.body.style.overflow = '';
 }

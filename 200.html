@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>中国穿衣地图 🧥</title>
-  <link rel="stylesheet" href="./styles.css?v=20260612-ui9" />
+  <link rel="stylesheet" href="./styles.css?v=20260612-ui10" />
 </head>
 <body>
   <main class="landing-page">
@@ -42,9 +42,17 @@
             <div class="scene-caption" id="sceneCaption"></div>
           </div>
           <div class="look-frame">
-            <div class="look-photo-wrap">
+            <div class="look-photo-wrap" id="lookPhotoWrap">
               <img class="look-photo" id="lookImage" alt="出片 LOOK" />
               <span class="look-tag">本命穿搭</span>
+              <div class="look-reel" id="lookReel" hidden>
+                <div class="look-reel-track" id="lookReelTrack"></div>
+                <div class="look-reel-fade look-reel-fade-top"></div>
+                <div class="look-reel-fade look-reel-fade-bottom"></div>
+                <div class="look-reel-marker" aria-hidden="true"></div>
+                <div class="look-reel-dots" id="lookReelDots"></div>
+                <button class="look-reel-btn" id="lookReelBtn" type="button"></button>
+              </div>
             </div>
             <div class="look-copy">
               <p class="detail-kicker">OOTD 风格</p>
@@ -87,6 +95,6 @@
     </div>
   </section>
 
-  <script src="./app.js?v=20260612-ui9"></script>
+  <script src="./app.js?v=20260612-ui10"></script>
 </body>
 </html>

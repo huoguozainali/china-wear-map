@@ -695,6 +695,124 @@ button { font: inherit; }
 }
 .look-copy { padding: 4px 14px 0 4px; }
 
+/* ===== 变装转盘 · LOOK Reel（绝对定位，完全复用 look-photo-wrap 的盒子，不改动卡片布局比例） ===== */
+.look-reel {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  overflow: hidden;
+  background: #ece0d0;
+}
+.look-reel[hidden] { display: none; }
+.look-reel-track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+.look-slide {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.look-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 16%;
+  display: block;
+}
+/* 顶/底渐隐，强化滚轮纵深感 */
+.look-reel-fade {
+  position: absolute;
+  left: 0; right: 0;
+  height: 24%;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity .35s ease;
+}
+.look-reel-fade-top { top: 0; background: linear-gradient(180deg, rgba(38,22,12,0.42), rgba(38,22,12,0)); }
+.look-reel-fade-bottom { bottom: 0; background: linear-gradient(0deg, rgba(38,22,12,0.5), rgba(38,22,12,0)); }
+.look-reel.is-landed .look-reel-fade { opacity: 0.35; }
+/* 中央定格高亮框（红框标注区域感） */
+.look-reel-marker {
+  position: absolute;
+  inset: 8px;
+  z-index: 5;
+  border-radius: 16px;
+  pointer-events: none;
+  border: 2px solid rgba(176, 84, 49, 0);
+  box-shadow: 0 0 0 0 rgba(176,84,49,0);
+  transition: border-color .35s ease, box-shadow .35s ease;
+}
+.look-reel.is-landed .look-reel-marker {
+  border-color: rgba(176, 84, 49, 0.92);
+  box-shadow: inset 0 0 0 3px rgba(255,248,241,0.32), 0 0 22px rgba(176,84,49,0.28);
+}
+/* 截停 / 再转 按钮 */
+.look-reel-btn {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  z-index: 6;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #fff8f1;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  background: linear-gradient(135deg, #b05431, #6f2818);
+  box-shadow: 0 12px 26px rgba(80, 34, 18, 0.4);
+  transition: transform .15s ease, filter .2s ease;
+}
+.look-reel-btn:hover { filter: brightness(1.07); }
+.look-reel-btn:active { transform: translateX(-50%) scale(0.94); }
+/* 右侧定位圆点 */
+.look-reel-dots {
+  position: absolute;
+  right: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.look-reel-dots i {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 248, 241, 0.5);
+  box-shadow: 0 0 0 1px rgba(80,34,18,0.2);
+  transition: transform .25s ease, background .25s ease;
+}
+.look-reel-dots i.active {
+  background: #f4b740;
+  transform: scale(1.5);
+}
+/* 定格弹跳（基于落位 translateY 做轻微回弹） */
+@keyframes lookLandBounce {
+  0%   { transform: translateY(var(--reel-y)) scale(1); }
+  38%  { transform: translateY(calc(var(--reel-y) - 9px)) scale(1.012); }
+  72%  { transform: translateY(calc(var(--reel-y) + 3px)) scale(0.998); }
+  100% { transform: translateY(var(--reel-y)) scale(1); }
+}
+.look-reel-track.is-bounce { animation: lookLandBounce .52s cubic-bezier(.34,1.56,.64,1); }
+@media (max-width: 900px) {
+  .look-reel-btn { bottom: 12px; padding: 9px 18px; font-size: 13px; }
+  .look-reel-dots i { width: 6px; height: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .look-reel-track.is-bounce { animation: none; }
+}
+
 .detail-screen {
   position: fixed;
   inset: 0;
