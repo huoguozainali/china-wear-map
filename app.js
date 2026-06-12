@@ -305,6 +305,142 @@ const MAP_PROJECTION = {
   ay: 0.00064996, by: -0.02576875, cy: 1.33243050
 };
 
+const CITY_LOOKS = {
+  kanas: [
+    { image: './assets/look_kanas.jpg', lookTitle: '山野机能驼棕', advice: '山野机能风 · 驼棕系层搭', lookDesc: '抓绒、壳层叠工装裤与靴子，驼棕大地色一身叠搭，远景近景都立得住。' },
+    { image: './assets/look_kanas_2.jpg', lookTitle: '白桦奶杏针织', advice: '北疆温柔风 · 奶杏针织', lookDesc: '奶白粗棒针毛衣叠焦糖半裙，配长靴与贝雷帽。柔和奶杏色调落在金黄白桦前，温柔又有油画质感。' },
+    { image: './assets/look_kanas_3.jpg', lookTitle: '复古油画大衣', advice: '复古油画风 · 酒红大地', lookDesc: '酒红灯芯绒外套配大地色长裙，格纹围巾随手一搭。色彩像从油画里走出来，是北疆秋色最浓的一笔。' },
+    { image: './assets/look_kanas_4.jpg', lookTitle: '北疆亮色羽绒', advice: '北疆户外风 · 亮色羽绒', lookDesc: '米白羽绒服内搭高领针织，配工装裤与雪地靴。轻盈又保暖，冷空气里依然鲜活跳脱。' },
+    { image: './assets/look_kanas_5.jpg', lookTitle: '驼金长大衣', advice: '驼金优雅风 · 长大衣', lookDesc: '驼色双面呢长大衣叠高领针织，长靴收尾。湖边一站，廓形与暖调把整片白桦金都衬得高级。' }
+  ],
+  aershan: [
+    { image: './assets/look_aershan.jpg', lookTitle: '北地保暖叠穿', advice: '高地保暖风 · 北地旅行', lookDesc: '羽绒背心或毛呢外套加围巾叠穿，深色厚质地，是冷调松林前最稳的镜头。' },
+    { image: './assets/look_aershan_2.jpg', lookTitle: '焦糖毛呢温柔', advice: '北地温柔风 · 焦糖毛呢', lookDesc: '焦糖色毛呢大衣内搭米白高领，配大圆围巾。厚而柔的质感落在金色草甸上，松弛又有体积感。' },
+    { image: './assets/look_aershan_3.jpg', lookTitle: '北境亮色羽绒', advice: '北境活力风 · 亮色羽绒', lookDesc: '明黄或南瓜橘羽绒服点亮冷调松林，配深色直筒裤与雪地靴。一抹亮色就是画面的焦点。' },
+    { image: './assets/look_aershan_4.jpg', lookTitle: '复古格纹学院', advice: '复古学院风 · 棕调格纹', lookDesc: '棕色格纹大衣配贝雷帽与长靴，复古又利落。北地的清冷里，多了一份书卷气的温度。' },
+    { image: './assets/look_aershan_5.jpg', lookTitle: '大地色机能', advice: '北地机能风 · 大地色', lookDesc: '卡其冲锋衣叠抓绒，束进工装裤与登山靴。户外感拉满，火山地貌前从容又有故事。' }
+  ],
+  daocheng: [
+    { image: './assets/look_daocheng.jpg', lookTitle: '高原亮色机能', advice: '高原户外美学 · 亮色冲锋', lookDesc: '亮色壳层叠抓绒中层与利落工装裤，墨镜与帽款点睛，高原大片感直接拉满。' },
+    { image: './assets/look_daocheng_2.jpg', lookTitle: '藏地红韵披肩', advice: '藏地风情 · 红韵披肩', lookDesc: '酒红针织披肩叠大地色长裙，银饰点缀。藏式色彩呼应高原经幡，神圣又鲜活。' },
+    { image: './assets/look_daocheng_3.jpg', lookTitle: '雪山撞色羽绒', advice: '高原活力风 · 撞色羽绒', lookDesc: '宝蓝与南瓜橘撞色羽绒服，配墨镜与针织帽。强对比的能量感，正配得上这片雪山草甸。' },
+    { image: './assets/look_daocheng_4.jpg', lookTitle: '米白羊羔绒', advice: '高原温柔风 · 羊羔绒', lookDesc: '米白羊羔绒外套内搭焦糖高领，配雪地靴。蓬松温暖的奶白调，把冷冽高原拍得很治愈。' },
+    { image: './assets/look_daocheng_5.jpg', lookTitle: '黑金机能户外', advice: '高原硬朗风 · 黑金机能', lookDesc: '黑色冲锋衣配金色围巾点睛，束进机能长裤。利落酷感与雪山线条相互成全。' }
+  ],
+  changbaishan: [
+    { image: './assets/look_changbaishan.jpg', lookTitle: '山地酒红针织', advice: '山地旅行风 · 酒红苔绿奶白', lookDesc: '深酒红针织叠奶白长大衣与苔绿阔腿裤、靴履，色调克制又有秋意。' },
+    { image: './assets/look_changbaishan_2.jpg', lookTitle: '焦糖羊毛斗篷', advice: '山地温柔风 · 焦糖斗篷', lookDesc: '焦糖羊毛斗篷叠高领针织，配长靴与贝雷帽。厚实又柔软，层林尽染里温度感十足。' },
+    { image: './assets/look_changbaishan_3.jpg', lookTitle: '苔绿机能针织', advice: '山地机能风 · 苔绿撞奶白', lookDesc: '苔绿冲锋衣内搭奶白粗棒针，配工装裤。冷调山色里，自然系配色最耐看。' },
+    { image: './assets/look_changbaishan_4.jpg', lookTitle: '复古格纹围巾', advice: '山地复古风 · 棕调格纹', lookDesc: '棕格纹大衣配超大羊毛围巾，长靴收尾。把山上的风都裹成了复古封面感。' },
+    { image: './assets/look_changbaishan_5.jpg', lookTitle: '深红厚针织', advice: '山地浓秋风 · 深红长裙', lookDesc: '深红粗棒针毛衣配米白长裙与长靴，浓郁又克制。整座层林为它做背景，秋意正浓。' }
+  ],
+  jiuzhaigou: [
+    { image: './assets/look_jiuzhaigou.jpg', lookTitle: '彩林撞色针织', advice: '彩林出片风 · 柔和针织撞色', lookDesc: '米白针织叠焦糖外套与深蓝裤装撞色叠搭，呼应彩林与海子的蓝绿金红。' },
+    { image: './assets/look_jiuzhaigou_2.jpg', lookTitle: '湖蓝针织撞色', advice: '彩林灵动风 · 湖蓝撞焦糖', lookDesc: '湖蓝针织叠焦糖外套，呼应海子的蓝与林的金。撞色干净不杂，童话感扑面而来。' },
+    { image: './assets/look_jiuzhaigou_3.jpg', lookTitle: '民族复古披肩', advice: '彩林复古风 · 编织披肩', lookDesc: '编织流苏披肩叠大地色长裙，银饰点缀。民族暖调落在彩林间，温柔有故事。' },
+    { image: './assets/look_jiuzhaigou_4.jpg', lookTitle: '法式米白文艺', advice: '彩林文艺风 · 米白贝雷', lookDesc: '米白针织配焦糖格纹半裙与贝雷帽，松弛慵懒。海子边一坐，温柔得像水彩。' },
+    { image: './assets/look_jiuzhaigou_5.jpg', lookTitle: '焦糖大衣温柔', advice: '彩林优雅风 · 焦糖长大衣', lookDesc: '焦糖长大衣内搭奶白高领，配长靴。暖调廓形与斑斓彩林相映，高级又出片。' }
+  ],
+  qixiashan: [
+    { image: './assets/look_qixiashan.jpg', lookTitle: '新中式复古', advice: '新中式秋游风 · 复古文艺', lookDesc: '立领新中式外套搭酒红、驼色或深棕调，层层红透的石阶古意里很有故事感。' },
+    { image: './assets/look_qixiashan_2.jpg', lookTitle: '马面裙红韵', advice: '新中式国风 · 马面裙', lookDesc: '酒红盘扣上衣配黑金马面裙，复古手包点睛。东方红撞满山枫叶，古寺石阶间气场拉满。' },
+    { image: './assets/look_qixiashan_3.jpg', lookTitle: '美拉德焦糖', advice: '美拉德暖调风 · 焦糖层搭', lookDesc: '焦糖针织叠巧克力色半裙，配长靴与棕色包。暖调层层递进，红枫下温柔又高级。' },
+    { image: './assets/look_qixiashan_4.jpg', lookTitle: '法式贝雷文艺', advice: '法式松弛风 · 贝雷文艺', lookDesc: '米白针织开衫配格纹百褶裙与黑贝雷，乐福鞋收尾。慵懒法式落在古寺石阶，随手成片。' },
+    { image: './assets/look_qixiashan_5.jpg', lookTitle: '复古丝绒红', advice: '复古港风 · 丝绒酒红', lookDesc: '酒红丝绒连衣裙配披肩与珍珠耳饰，复古优雅。枫叶古寺为背景，像一帧老电影。' }
+  ],
+  tianpingshan: [
+    { image: './assets/look_tianpingshan.jpg', lookTitle: '江南奶咖针织', advice: '江南轻复古 · 奶咖针织', lookDesc: '奶咖针织配半裙或大衣加披肩式层搭，古典园林景框里温柔又高级。' },
+    { image: './assets/look_tianpingshan_2.jpg', lookTitle: '黛青新中式', advice: '江南新中式 · 黛青立领', lookDesc: '黛青立领盘扣上衣配月白长裙，温润雅致。江南园林的景框里，东方留白感十足。' },
+    { image: './assets/look_tianpingshan_3.jpg', lookTitle: '米白蕾丝复古', advice: '江南复古风 · 米白蕾丝', lookDesc: '米白蕾丝衬衫叠针织背心配长裙，复古文艺。古典窗棂前，温柔得像旧时光。' },
+    { image: './assets/look_tianpingshan_4.jpg', lookTitle: '焦糖披肩文艺', advice: '江南文艺风 · 焦糖披肩', lookDesc: '焦糖针织披肩叠奶白长裙，配贝雷帽。暖调落在红枫与白墙之间，慵懒又高级。' },
+    { image: './assets/look_tianpingshan_5.jpg', lookTitle: '改良旗袍温柔', advice: '江南国风 · 改良旗袍', lookDesc: '改良丝绒旗袍外搭薄针织开衫，珍珠点缀。园林红枫做底，东方韵味温柔流转。' }
+  ],
+  tengchong: [
+    { image: './assets/look_tengchong.jpg', lookTitle: '暖调银杏文艺', advice: '暖调文艺风 · 奶油姜黄焦糖', lookDesc: '奶油白毛衣配姜黄或焦糖色长裙，落满银杏的村落里，慢秋治愈感拉满。' },
+    { image: './assets/look_tengchong_2.jpg', lookTitle: '姜黄长裙呼应', advice: '银杏暖调风 · 姜黄长裙', lookDesc: '姜黄色针织连衣裙配草编包，与满地银杏同色同框。一脚踩进金黄里，治愈感扑面。' },
+    { image: './assets/look_tengchong_3.jpg', lookTitle: '奶油针织慵懒', advice: '银杏温柔风 · 奶油针织', lookDesc: '奶油白粗棒针毛衣配焦糖半裙，松弛慵懒。银杏雨里坐下，柔软得像一杯热牛奶。' },
+    { image: './assets/look_tengchong_4.jpg', lookTitle: '复古碎花连衣裙', advice: '银杏复古风 · 暖调碎花', lookDesc: '暖调小碎花连衣裙外搭薄开衫，复古文艺。村落白墙与金黄银杏间，温柔有故事。' },
+    { image: './assets/look_tengchong_5.jpg', lookTitle: '焦糖斗篷暖秋', advice: '银杏优雅风 · 焦糖斗篷', lookDesc: '焦糖羊毛斗篷叠奶白高领，配长靴。暖调廓形落在银杏树下，慢秋里的高级感。' }
+  ],
+  wuyuan: [
+    { image: './assets/look_wuyuan.jpg', lookTitle: '古村复古夹克', advice: '古村氛围风 · 复古夹克', lookDesc: '复古夹克叠针织马甲配低饱和暖色，白墙黑瓦与晒秋之间格外出片。' },
+    { image: './assets/look_wuyuan_2.jpg', lookTitle: '蓝染棉麻新中式', advice: '古村新中式 · 蓝染棉麻', lookDesc: '蓝染棉麻立领上衣配阔腿裤，质朴雅致。徽派白墙黑瓦间，东方手作感满满。' },
+    { image: './assets/look_wuyuan_3.jpg', lookTitle: '复古碎花连衣裙', advice: '古村复古风 · 暖调碎花', lookDesc: '暖调碎花连衣裙外搭针织开衫，复古温柔。晒秋的辣椒玉米做底，烟火气里很出片。' },
+    { image: './assets/look_wuyuan_4.jpg', lookTitle: '米白针织温柔', advice: '古村温柔风 · 米白针织', lookDesc: '米白针织衫配卡其半裙与帆布包，清爽松弛。晨雾村落里，干净的奶白最耐看。' },
+    { image: './assets/look_wuyuan_5.jpg', lookTitle: '焦糖夹克文艺', advice: '古村文艺风 · 焦糖夹克', lookDesc: '焦糖灯芯绒夹克叠针织马甲配工装裤，复古有型。古村巷弄间，氛围感拉满。' }
+  ],
+  linzhi: [
+    { image: './assets/look_linzhi.jpg', lookTitle: '高原亮色机能', advice: '高原户外风 · 亮色机能', lookDesc: '亮色冲锋衣叠抓绒中层与工装裤、登山靴，墨镜点睛，雪山前直接出大片。' },
+    { image: './assets/look_linzhi_2.jpg', lookTitle: '藏地红披肩', advice: '藏地风情 · 红韵披肩', lookDesc: '酒红针织披肩叠大地色长裙，银饰点缀。雪山金杨为底，藏式暖色温暖又圣洁。' },
+    { image: './assets/look_linzhi_3.jpg', lookTitle: '米白羊羔绒', advice: '高原温柔风 · 羊羔绒', lookDesc: '米白羊羔绒外套内搭焦糖高领，配雪地靴。蓬松奶白落在雪山前，温柔治愈。' },
+    { image: './assets/look_linzhi_4.jpg', lookTitle: '雪山亮色羽绒', advice: '高原活力风 · 亮色羽绒', lookDesc: '宝蓝或南瓜橘羽绒服配墨镜与针织帽，能量满满。金黄杨林间，一抹亮色就是焦点。' },
+    { image: './assets/look_linzhi_5.jpg', lookTitle: '驼色长大衣', advice: '高原优雅风 · 驼色长大衣', lookDesc: '驼色长大衣叠高领针织配长靴，廓形利落。南迦巴瓦做背景，高级感不输大片。' }
+  ],
+  zhangye: [
+    { image: './assets/look_zhangye.jpg', lookTitle: '旷野大地色', advice: '西北旷野风 · 大地色廓形', lookDesc: '驼色长风衣配大地色阔腿裤，迎风走在彩岩之间，画面张力直接拉满。' },
+    { image: './assets/look_zhangye_2.jpg', lookTitle: '红裙旷野飘逸', advice: '旷野大片风 · 红色长裙', lookDesc: '大红色飘逸长裙随风扬起，撞色七彩丹霞。一袭红衣走进旷野，画面张力直接封神。' },
+    { image: './assets/look_zhangye_3.jpg', lookTitle: '大地色廓形套装', advice: '旷野高级风 · 大地廓形', lookDesc: '大地色西装廓形套装配墨镜，利落有气场。丹霞层岩为底，干练又出片。' },
+    { image: './assets/look_zhangye_4.jpg', lookTitle: '白裙撞丹霞', advice: '旷野纯净风 · 白色长裙', lookDesc: '纯白长裙在彩岩前格外圣洁，配草帽与平底鞋。极简白撞斑斓丹霞，对比惊艳。' },
+    { image: './assets/look_zhangye_5.jpg', lookTitle: '西部牛仔风', advice: '旷野西部风 · 牛仔做旧', lookDesc: '做旧牛仔外套配阔腿牛仔裤与西部靴，自由洒脱。旷野落日里，满满公路片既视感。' }
+  ],
+  xian: [
+    { image: './assets/look_xian.jpg', lookTitle: '新中式古都', advice: '新中式古都风 · 复古文艺', lookDesc: '立领新中式外套配酒红驼色调，古寺金黄银杏树下，东方氛围拉满。' },
+    { image: './assets/look_xian_2.jpg', lookTitle: '马面裙古都', advice: '新中式国风 · 马面裙', lookDesc: '酒红盘扣上衣配织金马面裙，复古发簪点缀。千年银杏与城墙为底，东方气场拉满。' },
+    { image: './assets/look_xian_3.jpg', lookTitle: '唐风襦裙改良', advice: '国风唐韵 · 改良襦裙', lookDesc: '改良唐风襦裙配披帛，温婉大气。古寺金黄落叶间，像从壁画里走出的盛唐。' },
+    { image: './assets/look_xian_4.jpg', lookTitle: '美拉德焦糖', advice: '美拉德暖调风 · 焦糖层搭', lookDesc: '焦糖针织叠巧克力色长大衣配长靴，暖调高级。古城墙下，复古又时髦。' },
+    { image: './assets/look_xian_5.jpg', lookTitle: '复古旗袍大衣', advice: '复古优雅风 · 旗袍叠大衣', lookDesc: '改良旗袍外搭驼色大衣，复古优雅。银杏古寺做背景，东西混搭韵味十足。' }
+  ],
+  zhangjiajie: [
+    { image: './assets/look_zhangjiajie.jpg', lookTitle: '山系机能', advice: '山系机能风 · 深色利落', lookDesc: '冲锋衣叠针织层搭与工装裤，深色利落，云海峰林前探索感十足。' },
+    { image: './assets/look_zhangjiajie_2.jpg', lookTitle: '山系亮色机能', advice: '山系活力风 · 亮色冲锋', lookDesc: '亮色冲锋衣内搭抓绒，配工装裤与登山鞋。云海峰林间，一抹亮色探索感拉满。' },
+    { image: './assets/look_zhangjiajie_3.jpg', lookTitle: '民族风情长裙', advice: '峰林风情风 · 民族长裙', lookDesc: '民族图腾长裙外搭针织披肩，飘逸灵动。云雾峰林为底，仙气与故事感并存。' },
+    { image: './assets/look_zhangjiajie_4.jpg', lookTitle: '米白针织温柔', advice: '峰林温柔风 · 米白针织', lookDesc: '米白高领针织配大地色阔腿裤与长靴，干净松弛。峰林云海前，温柔也很有力量。' },
+    { image: './assets/look_zhangjiajie_5.jpg', lookTitle: '红风衣云海', advice: '峰林大片风 · 红色风衣', lookDesc: '大红色风衣在云海前格外醒目，配深色阔腿裤。峰林做背景，一袭红衣就是封面。' }
+  ],
+  chongqing: [
+    { image: './assets/look_chongqing.jpg', lookTitle: '都市街拍', advice: '都市街拍风 · 慵懒高级', lookDesc: '风衣叠针织与阔腿裤，慵懒利落，山城阶梯里街拍感拉满。' },
+    { image: './assets/look_chongqing_2.jpg', lookTitle: '美拉德街拍', advice: '都市美拉德 · 焦糖街拍', lookDesc: '焦糖皮衣叠针织配阔腿裤，暖调利落。山城阶梯与暮色霓虹间，街拍感满满。' },
+    { image: './assets/look_chongqing_3.jpg', lookTitle: '复古港风', advice: '都市港风 · 复古慵懒', lookDesc: '垫肩西装叠丝缎衬衫配直筒裤，复古港风。山城老街里，像港片女主的一帧。' },
+    { image: './assets/look_chongqing_4.jpg', lookTitle: '慵懒针织阔腿', advice: '都市慵懒风 · 奶咖针织', lookDesc: '奶咖落肩针织配阔腿西裤与乐福鞋，松弛高级。山城步道间，慵懒得很高级。' },
+    { image: './assets/look_chongqing_5.jpg', lookTitle: '皮衣机车酷感', advice: '都市酷感风 · 黑皮衣', lookDesc: '黑色机车皮衣配直筒牛仔裤与短靴，飒爽酷感。两江暮色为底，街头张力十足。' }
+  ],
+  hangzhou: [
+    { image: './assets/look_hangzhou.jpg', lookTitle: '江南温柔', advice: '江南温柔风 · 奶咖针织', lookDesc: '奶咖针织配长大衣或半裙，金黄梧桐道上，文艺优雅。' },
+    { image: './assets/look_hangzhou_2.jpg', lookTitle: '法式风衣温柔', advice: '江南法式 · 风衣温柔', lookDesc: '卡其风衣内搭奶白针织配阔腿裤，松弛优雅。梧桐林荫道上，温柔又有故事。' },
+    { image: './assets/look_hangzhou_3.jpg', lookTitle: '奶咖针织半裙', advice: '江南文艺风 · 奶咖半裙', lookDesc: '奶咖针织配同色系A字半裙与乐福鞋，文艺清新。西湖远山为底，温柔得恰到好处。' },
+    { image: './assets/look_hangzhou_4.jpg', lookTitle: '月白新中式', advice: '江南新中式 · 月白立领', lookDesc: '月白立领盘扣上衣配黛色长裙，雅致留白。梧桐西湖间，东方温柔感拉满。' },
+    { image: './assets/look_hangzhou_5.jpg', lookTitle: '复古格纹学院', advice: '江南学院风 · 棕调格纹', lookDesc: '棕格纹西装外套叠针织背心配半裙，复古学院。金黄梧桐道，复古又鲜活。' }
+  ],
+  conghua: [
+    { image: './assets/look_conghua.jpg', lookTitle: '岭南暖秋', advice: '岭南暖秋风 · 轻薄明快', lookDesc: '轻薄针织配风衣外搭与明快色裤装，红叶溪谷里明媚出片。' },
+    { image: './assets/look_conghua_2.jpg', lookTitle: '明快连衣裙', advice: '岭南明快风 · 轻薄连衣裙', lookDesc: '明快色轻薄连衣裙配草编包与平底鞋，清爽鲜活。红叶溪谷里，暖秋也能很轻盈。' },
+    { image: './assets/look_conghua_3.jpg', lookTitle: '法式碎花', advice: '岭南法式 · 碎花裙', lookDesc: '法式小碎花连衣裙外搭薄开衫，温柔浪漫。流溪红叶间，慵懒又明媚。' },
+    { image: './assets/look_conghua_4.jpg', lookTitle: '针织短袖半裙', advice: '岭南清爽风 · 针织半裙', lookDesc: '短袖针织配高腰半裙与乐福鞋，干净利落。暖秋的午后，清清爽爽最出片。' },
+    { image: './assets/look_conghua_5.jpg', lookTitle: '焦糖薄风衣', advice: '岭南都市风 · 薄风衣', lookDesc: '焦糖色薄风衣内搭白T配直筒裤，松弛高级。岭南暖阳里，轻盈又时髦。' }
+  ],
+  mohe: [
+    { image: './assets/look_mohe.jpg', lookTitle: '极北保暖', advice: '极北保暖风 · 厚质叠穿', lookDesc: '厚羽绒或毛呢大衣加围巾叠穿，深色保暖，初雪白桦前格外有氛围。' },
+    { image: './assets/look_mohe_2.jpg', lookTitle: '米白羽绒雪地', advice: '极北温柔风 · 米白羽绒', lookDesc: '米白长款羽绒服内搭高领针织，配雪地靴与毛线帽。初雪白桦间，奶白调温柔治愈。' },
+    { image: './assets/look_mohe_3.jpg', lookTitle: '红大衣撞雪景', advice: '极北大片风 · 红色大衣', lookDesc: '大红色毛呢大衣在雪景里格外醒目，配围巾与长靴。一袭红衣撞初雪，画面浓烈出片。' },
+    { image: './assets/look_mohe_4.jpg', lookTitle: '焦糖毛呢围巾', advice: '极北复古风 · 焦糖毛呢', lookDesc: '焦糖毛呢大衣配超大格纹围巾与贝雷帽，复古保暖。极北清冷里，暖调最动人。' },
+    { image: './assets/look_mohe_5.jpg', lookTitle: '复古格纹厚叠', advice: '极北学院风 · 格纹叠穿', lookDesc: '棕格纹厚大衣叠高领针织配长靴，复古有型。白桦初雪做背景，氛围感拉满。' }
+  ],
+  taihang: [
+    { image: './assets/look_taihang.jpg', lookTitle: '山地旅行', advice: '山地旅行风 · 硬朗有型', lookDesc: '旅行夹克叠针织马甲与工装裤，硬朗有型，红叶峡谷前张力十足。' },
+    { image: './assets/look_taihang_2.jpg', lookTitle: '大地色机能', advice: '山地机能风 · 大地色', lookDesc: '卡其冲锋衣叠抓绒束进工装裤，配登山靴。雄浑红岩前，户外感与张力并存。' },
+    { image: './assets/look_taihang_3.jpg', lookTitle: '亮色冲锋点睛', advice: '山地活力风 · 亮色冲锋', lookDesc: '亮色冲锋衣配深色机能裤与登山鞋，利落有能量。深色峡谷里，一抹亮色就是焦点。' },
+    { image: './assets/look_taihang_4.jpg', lookTitle: '复古夹克针织', advice: '山地复古风 · 复古夹克', lookDesc: '复古灯芯绒夹克叠针织衫配工装裤，硬朗有型。红岩层林间，复古又耐看。' },
+    { image: './assets/look_taihang_5.jpg', lookTitle: '红针织撞红岩', advice: '山地浓秋风 · 红色针织', lookDesc: '深红粗棒针毛衣配大地色长裤与长靴，浓郁温暖。撞上雄浑红岩，秋意正浓。' }
+  ],
+  qiandongnan: [
+    { image: './assets/look_qiandongnan.jpg', lookTitle: '复古民族', advice: '复古民族风 · 暖色编织', lookDesc: '复古暖色外套叠编织元素与阔腿裤，金黄梯田苗寨间温暖有故事。' },
+    { image: './assets/look_qiandongnan_2.jpg', lookTitle: '民族编织外套', advice: '民族风情风 · 编织外套', lookDesc: '民族图腾编织外套配阔腿裤与银饰，复古有故事。梯田苗寨为底，暖色编织感满满。' },
+    { image: './assets/look_qiandongnan_3.jpg', lookTitle: '蓝染棉麻新中式', advice: '民族新中式 · 蓝染棉麻', lookDesc: '蓝染棉麻立领上衣配阔腿裤，质朴雅致。吊脚楼前，东方手作感温柔流转。' },
+    { image: './assets/look_qiandongnan_4.jpg', lookTitle: '暖色长裙梯田', advice: '民族暖调风 · 暖色长裙', lookDesc: '姜黄或砖红长裙外搭针织披肩，飘逸灵动。金黄梯田间，温暖又出片。' },
+    { image: './assets/look_qiandongnan_5.jpg', lookTitle: '改良苗服时尚', advice: '民族时尚风 · 改良苗服', lookDesc: '改良苗绣上衣配半裙与银饰，时髦灵动。把民族元素穿出高级感，苗寨里独一份。' }
+  ],
+};
+
 const chinaMap = document.getElementById('chinaMap');
 const detailScreen = document.getElementById('detailScreen');
 const scenicImage = document.getElementById('scenicImage');
@@ -700,9 +836,9 @@ const LookReel = (() => {
     lookReelTrack.style.height = (2 * setH) + 'px';
   }
 
-  function setup(item) {
+  function setup(looksArg) {
     teardown(false);
-    looks = item.looks;
+    looks = looksArg;
     n = looks.length;
     landedIndex = 0;
     // 渲染两组幻灯片，保证无缝循环
@@ -736,7 +872,7 @@ const LookReel = (() => {
     lookReel.classList.remove('is-landed');
     lookReelTrack.classList.remove('is-bounce');
     lookReelTrack.style.transform = `translateY(${-pos}px)`;
-    velocity = Math.max(18, slideH * 0.085);  // 流畅且有速度感
+    velocity = Math.max(13, slideH * 0.062);  // 流畅、速度更柔和（较上版再放慢约 1/4）
     state = 'spinning';
     lookReelBtn.textContent = '🎰 截停定格';
     raf = requestAnimationFrame(spinFrame);
@@ -830,10 +966,11 @@ function fillSecondLayer(item) {
     `linear-gradient(180deg, rgba(26,18,12,0.04), rgba(26,18,12,0.34)), url('${item.image}')`;
   sceneBadge.textContent = item.shortAddress;
   sceneCaption.textContent = item.scene;
-  const hasReel = Array.isArray(item.looks) && item.looks.length > 1;
+  const looksData = item.looks || CITY_LOOKS[item.id];
+  const hasReel = Array.isArray(looksData) && looksData.length > 1;
   if (hasReel) {
     // 多套 LOOK：启用变装转盘，文案由转盘联动（默认先展示第一套）
-    LookReel.setup(item);
+    LookReel.setup(looksData);
   } else {
     LookReel.teardown(true);
     lookImage.src = item.look;
@@ -866,7 +1003,8 @@ function openDetail(id) {
   detailScreen.scrollTop = 0;
   document.body.style.overflow = 'hidden';
   // 详情可见后再测量并自动起转（隐藏态无法获取正确高度）
-  if (Array.isArray(item.looks) && item.looks.length > 1) {
+  const looksData2 = item.looks || CITY_LOOKS[item.id];
+  if (Array.isArray(looksData2) && looksData2.length > 1) {
     requestAnimationFrame(() => requestAnimationFrame(() => LookReel.startSpin()));
   }
 }
